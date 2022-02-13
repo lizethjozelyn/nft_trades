@@ -1,0 +1,42 @@
+.header {
+	background-color: #000;
+}
+
+.header ul {
+	list-style-type: none;
+	display: flex;
+	
+}
+
+.header a {
+	margin: 10px;
+	padding: 0 15px;
+	font-size: 20px;
+
+}
+
+.container {
+	max-width: 1100px;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+
+.flex {
+	display: flex;
+	height: 100px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+.profile {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+
+
+
+
