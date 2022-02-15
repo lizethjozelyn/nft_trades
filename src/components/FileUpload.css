@@ -1,0 +1,71 @@
+.header a {
+	margin: 10px;
+	padding: 0 15px;
+	font-size: 20px;
+
+}
+
+
+.custom-file {
+
+    position: relative;
+
+	
+	
+}
+
+.target p {
+    position: relative;
+    z-index: 11;
+	
+	text-align: center;
+    left: 0;
+    right:0;	
+	top: 15px;
+	
+	
+	
+	
+}
+
+
+.target input {
+    outline: 2px dashed #92b0b3;
+	outline-offset: -10px;
+    padding: 120px 25% 85px 35%;
+
+	/*t, r, b, l*/
+
+
+
+    margin: 0;
+
+    position: relative;
+    z-index: 12;	
+	top: -95px;
+	opacity: 0.8;
+	
+	
+}
+
+.target input:hover {
+
+    
+	opacity: 1;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
