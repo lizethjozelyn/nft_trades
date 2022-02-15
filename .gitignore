@@ -2,6 +2,7 @@
 *~
 *.bak
 *.txt
+*.zip
 # dependencies
 /node_modules
 /.pnp
