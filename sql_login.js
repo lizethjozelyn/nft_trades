@@ -52,7 +52,6 @@ async function execute_query(sql_arg, var_args = null){
 }
 */
 
-/*
 async function execute_query(sql_arg, var_args = null){
     con.query(sql_arg, (error, results, fields) =>{
         if(error){
@@ -61,7 +60,8 @@ async function execute_query(sql_arg, var_args = null){
         return results;
     });
 }
-*/
+
+
 
 
 
