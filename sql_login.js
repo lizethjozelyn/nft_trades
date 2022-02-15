@@ -50,8 +50,9 @@ async function execute_query(sql_arg, var_args = null){
         console.log("test");
     });
 }
+*/
 
-
+/*
 async function execute_query(sql_arg, var_args = null){
     con.query(sql_arg, (error, results, fields) =>{
         if(error){
@@ -61,7 +62,6 @@ async function execute_query(sql_arg, var_args = null){
     });
 }
 */
-
 
 
 
@@ -80,13 +80,9 @@ async function encrypt_user(data){
 }
 
 async function insert_user(user){
-    var test = await execute_query("SELECT * FROM users WHERE user_id = ?", user['username'])
-    if(test.length !== 0){
-        return false;
-    }
     var user_2 = await encrypt_user(user);
-    await execute_query("INSERT INTO users VALUES(?, ?)", user_2);
-    return true;
+    //console.log(user_2);
+    execute_query("INSERT INTO users VALUES(?, ?)", user_2);
 }
 
 async function login_check(user_data){
@@ -112,13 +108,15 @@ function execute_query(sql, args=null) {
 
 
 async function main(){
+    //argh = await execute_query("SELECT * FROM users");
 
-    console.log(await insert_user({'username' : "test", "password" : "Password"}));
-    console.log(await insert_user({'username' : "test2", "password" : "Passwordle"}));
     console.log(await login_check({'username' : "test", "password" : "Password"}));
     console.log(await login_check({'username' : "test", "password" : "NotThePassword"}));
-    var test = await execute_query("SELECT * FROM  users");
-    console.log(test);  
+    //insert_user({'username' : "test", "password" : "Password"});
+    //var argh = await execute_query("SELECT * FROM  users");
+    //console.log(argh);
+    
+
 }
 
 
