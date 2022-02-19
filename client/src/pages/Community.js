@@ -1,12 +1,10 @@
-import { Fragment, useState } from 'react';
-import Header from './../components/Header' 
-import Upload from '../components/FileUpload' 
-import '../components/FileUpload.css'
-import { Link} from "react-router-dom";
+import { useState } from 'react';
+
+import '../components/FileUpload.css' 
 
 function Community(props) {
   const [file, setFile] = useState('');
-	const [filename, setFilename] = useState('Choose File');
+	const [setFilename] = useState('Choose File');
 
 	const onChange = e => {
 		setFile(e.target.files);
