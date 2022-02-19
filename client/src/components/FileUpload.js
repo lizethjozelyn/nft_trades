@@ -47,6 +47,4 @@ function FileUpload() {
 				<img src={logo} className="App-logo" alt="logo" Style="width:10%" />*/
 
 
-export default FileUpload;
-
 

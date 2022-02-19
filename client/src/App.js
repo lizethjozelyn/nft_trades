@@ -16,7 +16,7 @@ function App() {
 			<Route path='/' element={ <Home /> } />
 			<Route path='/dashboard' element={ <Dashboard /> } />
 			<Route path='/store' element={ <Dashboard /> } />
-			<Route path='/community' element={ <Upload /> } />
+			<Route path='/community' element={ <Community /> } />
 			<Route path='/profile*' element={ <Profile id={window.location.pathname} /> } />
 		</Routes>
 
