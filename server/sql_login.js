@@ -12,11 +12,11 @@ const config = {
         password: "TestPassword123",
         database: "test"
     }
-
 };
 */
 
 //This should NOT be public - we need to hide it somehow in the final version
+
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -100,6 +100,36 @@ async function get_users(){
 
 }
 
+//add image to db
+async function add_image(url){
+    var test = await execute_query("SELECT * FROM images WHERE url = ?", url);
+    if(test.length !== 0){
+        return false;
+    }
+    await execute_query("INSERT INTO images (url) VALUES (?)", url);
+}
+
+//associate a user with an image
+async function add_user_to_image(url, user){
+    results = await execute_query("SELECT * FROM users WHERE user_id = ?", user);
+    if(results.length == 0)
+        return false;
+    results = await execute_query("SELECT * FROM images WHERE url = ?", url);
+    if(results.length == 0)
+        return false;
+    await execute_query("UPDATE images SET user_id = ? WHERE url = ?", [user, url]);
+    return true;
+}
+
+//returns null if user doesn't exist
+//returns list of images owned by user
+async function get_user_images(user){
+    results = await execute_query("SELECT * FROM users WHERE user_id = ?", user);
+    if(results.length == 0)
+        return null;
+    return await execute_query("SELECT url FROM images WHERE user_id = ?", user);
+
+}
 
 
 
@@ -127,12 +157,16 @@ module.exports = {
     insert_user,
     login_check, 
     db_connect,
-	get_users
+    get_users,
+    add_image,
+    add_user_to_image,
+    get_user_images
 };
+
 
     db_connect();
 //Comment this bit out if you don't want to run tests
-async function runTests(){
+async function runUserTests(){
     //db_connect();
     console.log(await insert_user({'username' : "test", "password" : "Password"}));
     console.log(await insert_user({'username' : "test2", "password" : "Passwordle"}));
@@ -146,6 +180,22 @@ async function runTests(){
     console.log(test);  
     //con.end();
 }
-runTests();
+
+async function runUrlTests(){
 
 
+    await add_image("google.com");
+    await add_image("yahoo.com");
+    await add_image("eggert.com")
+    await add_image("smallberg.com");
+
+    await add_user_to_image("eggert.com", "test");
+    await add_user_to_image("google.com", "test");
+       
+    
+    console.log(await get_user_images("test"));
+
+}
+//run this below function first!
+//runUserTests();
+runUrlTests();
