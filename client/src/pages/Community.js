@@ -1,41 +1,29 @@
-import { Fragment, useState } from 'react';
+import logo from './../logo.svg';
+
 import Header from './../components/Header' 
-import Upload from '../components/FileUpload' 
-import '../components/FileUpload.css'
-import { Link} from "react-router-dom";
+import SearchBar from './../components/SearchBar' 
+import users from './../components/MOCK_USER.json' 
 
-function Community(props) {
-  const [file, setFile] = useState('');
-	const [filename, setFilename] = useState('Choose File');
-
-	const onChange = e => {
-		setFile(e.target.files);
-		setFilename(e.target.files.name);	
-		
-	};
+function Community({}) {
   return (
-    <div className='App'>
+    <div className="App">
+
       <header className="App-header">
-        Find a collector!
-        </header>
-      <div className="container">
-				<section className="target">
-					<p style={{opacity:0}} > s</p>
-					<p>Drop your WebP, PNG or JPEG files here!</p>
-					<p style={{opacity:0}} > s</p>
-					<input type="file" onChange={onChange} />
-
-				</section>
-
-			</div>
-      {file &&
-        <div className='row mt-5'>
-          <div className='col-md-6 m-auto'>
-
-					<p>upload!</p>
-          </div>
-        </div>
-      }
+	  <h1>Find a collector</h1>
+	  <SearchBar placeholder="" data={users} />
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+		{window.location.pathname}
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
