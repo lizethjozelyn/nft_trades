@@ -2,6 +2,7 @@ var mysql = require('mysql');
 var bcrypt = require('bcrypt');
 const { promisify } = require('util');
 
+
 /*
 const config = {
     db:{ 
@@ -18,9 +19,9 @@ const config = {
 //This should NOT be public - we need to hide it somehow in the final version
 var con = mysql.createConnection({
     host: "localhost",
-    user: "test",
+    user: "root",
     password: "TestPassword123",
-    database: "test"
+    database: "test",
 });
 
 
@@ -28,6 +29,15 @@ var con = mysql.createConnection({
 
 //connect to DB
 async function db_connect(){
+	var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "TestPassword123",
+    database: "test",
+});
+
+
+
     con.connect(function(err){
         if (err) throw err;
         console.log("Connected to database successfully.")
@@ -82,6 +92,17 @@ async function login_check(user_data){
 
 }
 
+async function get_users(){
+    results = await execute_query("SELECT user_id FROM users");
+
+	console.log(JSON.stringify(results));
+    return results;
+
+}
+
+
+
+
 //pretties up con.query, lets you await it
 //example:
 //await execute query("SELECT * FROM users WHERE user_id = ?", "steve")
@@ -105,20 +126,26 @@ module.exports = {
     execute_query,
     insert_user,
     login_check, 
-    db_connect
+    db_connect,
+	get_users
 };
 
-
+    db_connect();
 //Comment this bit out if you don't want to run tests
 async function runTests(){
-    db_connect();
+    //db_connect();
     console.log(await insert_user({'username' : "test", "password" : "Password"}));
     console.log(await insert_user({'username' : "test2", "password" : "Passwordle"}));
     console.log(await login_check({'username' : "test", "password" : "Password"}));
     console.log(await login_check({'username' : "test", "password" : "NotThePassword"}));
     console.log(await login_check({'username' : "notauser", "password" : "NotThePassword"}));
+    console.log(await insert_user({'username' : "jack.son", "password" : "Password"}));
+
+
     var test = await execute_query("SELECT * FROM  users");
     console.log(test);  
-    con.end();
+    //con.end();
 }
 runTests();
+
+

@@ -6,7 +6,8 @@ import Dashboard from './pages/Dashboard'
 import Community from './pages/Community' 
 import Profile from './pages/Profile' 
 import Upload from './components/FileUpload' 
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import LoginReg from './components/LoginReg' 
+import { Route, Routes} from "react-router-dom";
 function App() {
   return (
     <div className="App">
@@ -15,9 +16,11 @@ function App() {
 			
 			<Route path='/' element={ <Home /> } />
 			<Route path='/dashboard' element={ <Dashboard /> } />
-			<Route path='/store' element={ <Dashboard /> } />
-			<Route path='/community' element={ <Upload /> } />
-			<Route path='/profile*' element={ <Profile id={window.location.pathname} /> } />
+			<Route path='/store' element={ <Upload /> } />
+			<Route exact path='/community' element={ <Community /> } />
+			<Route exact path='/community/*' element={ <Dashboard /> } />
+			<Route path='/login' element={ <LoginReg /> } />
+			
 		</Routes>
 
     </div>
