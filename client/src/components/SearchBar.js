@@ -1,6 +1,7 @@
 import logo from './../logo.svg';
 import { Link} from "react-router-dom";
 import { Fragment, useState } from 'react';
+import './SearchBar.css'
 import Axios from "axios";
 
 import Header from './../components/Header' 
@@ -46,13 +47,13 @@ function SearchBar({placeholder, data}) {
 
 	<div className="searchbar">
 		<div className="searchInputs">
-			<input type="text" onChange={sendQuery} />
+			<input type="text" aria-label="Search by -- username" placeholder="Search by -- username" className="inputBox" onChange={sendQuery} />
 		</div>
 		{filteredData.length > 0 && userList ? (
 			<div className="searchResults">
 				{filteredData.slice(0, 10).map((value, i) => {
 					return (
-						<div key={i}>
+						<div key={i} className="user-result">
 							<Link to={value.user_id} key={i}>
 								{value.user_id}{" "}
 							</Link>{" "}
