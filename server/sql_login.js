@@ -1,42 +1,32 @@
 var mysql = require('mysql');
 var bcrypt = require('bcrypt');
 const { promisify } = require('util');
+const config = require('config')
 
 
-/*
-const config = {
-    db:{ 
-        //move this to somewhere secure for the publication version
-        host: "localhost",
-        user: "test",
-        password: "TestPassword123",
-        database: "test"
-    }
-};
-*/
+//Check discord for the configs.
+//DO NOT 
 
-//This should NOT be public - we need to hide it somehow in the final version
-
+const con_vars = config.get("db");
+//const con_vars = config.get("localhost");
+//const con_vars = config.get("localhost_test");
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "TestPassword123",
-    database: "test",
+    host: con_vars['host'],
+    user: con_vars['user'],
+    password: con_vars['password'],
+    database: con_vars['database'],
+    
 });
-
-
 
 
 //connect to DB
 async function db_connect(){
 	var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "TestPassword123",
-    database: "test",
+    host: con_vars['host'],
+    user: con_vars['user'],
+    password: con_vars['password'],
+    database: con_vars['database'],
 });
-
-
 
     con.connect(function(err){
         if (err) throw err;
@@ -45,19 +35,6 @@ async function db_connect(){
 }
 
 
-
-/*
-const pool = mysql.createPool(config);
-async function query (sql, params) {
-    console.log(await pool.execute(sql, params));
-    //return rows;
-}
-*/
-
-
-//encryption (we'll have to hide some of this)
-//const INIT = Buffer.alloc(16,0);
-//const ALG = "aes-256-cbc";
 const SALT_ROUNDS = 10;
 
 //takes dictionary of username and password
@@ -100,7 +77,6 @@ async function get_users(){
 
 }
 
-//add image to db
 async function add_image(url){
     var test = await execute_query("SELECT * FROM images WHERE url = ?", url);
     if(test.length !== 0){
@@ -109,7 +85,6 @@ async function add_image(url){
     await execute_query("INSERT INTO images (url) VALUES (?)", url);
 }
 
-//associate a user with an image
 async function add_user_to_image(url, user){
     results = await execute_query("SELECT * FROM users WHERE user_id = ?", user);
     if(results.length == 0)
@@ -122,7 +97,6 @@ async function add_user_to_image(url, user){
 }
 
 //returns null if user doesn't exist
-//returns list of images owned by user
 async function get_user_images(user){
     results = await execute_query("SELECT * FROM users WHERE user_id = ?", user);
     if(results.length == 0)
@@ -163,7 +137,6 @@ module.exports = {
     get_user_images
 };
 
-
     db_connect();
 //Comment this bit out if you don't want to run tests
 async function runUserTests(){
@@ -196,6 +169,8 @@ async function runUrlTests(){
     console.log(await get_user_images("test"));
 
 }
-//run this below function first!
-//runUserTests();
+runUserTests();
 runUrlTests();
+//note: you want to run con.end(); at the end of accessing the DB
+//I can add that to the end of functions if you'd like, it might slow down
+//the code though because it would mean you have to reconnect for each query
