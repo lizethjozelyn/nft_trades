@@ -122,6 +122,9 @@ async function get_all_user_data(user){
     return results;
 }
 
+async function get_all_images(){
+    return await execute_query("SELECT url FROM images");
+}
 
 
 //pretties up con.query, lets you await it
@@ -185,11 +188,12 @@ async function runUrlTests(){
 
     await add_user_to_image("eggert.com", "test");
     await add_user_to_image("google.com", "test");
-    await add_image_to_group("google.com", "searchengines");
-    await add_image_to_group("yahoo.com", "searchengines");
+    await add_image_to_group("google.com", "search engines");
+    await add_image_to_group("yahoo.com", "search engines");
     
     console.log(await get_user_images("test"));
     console.log(await get_group("search engines"));
+    console.log(await get_all_images());
 
 }
 runUserTests();
