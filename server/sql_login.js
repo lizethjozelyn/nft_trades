@@ -71,10 +71,8 @@ async function login_check(user_data){
 
 async function get_users(){
     results = await execute_query("SELECT user_id FROM users");
-
 	console.log(JSON.stringify(results));
     return results;
-
 }
 
 async function add_image(url){
@@ -84,6 +82,18 @@ async function add_image(url){
     }
     await execute_query("INSERT INTO images (url) VALUES (?)", url);
 }
+
+async function add_image_to_group(url, group){
+    await execute_query("UPDATE images SET image_group = ? WHERE url = ?", [group, url]);
+}
+
+async function get_group(group){
+    results = await execute_query("SELECT * FROM images WHERE image_group = ?", group);
+    if(results.length == 0)
+        return null;
+    return results;
+}
+
 
 async function add_user_to_image(url, user){
     results = await execute_query("SELECT * FROM users WHERE user_id = ?", user);
@@ -103,6 +113,13 @@ async function get_user_images(user){
         return null;
     return await execute_query("SELECT url FROM images WHERE user_id = ?", user);
 
+}
+
+async function get_all_user_data(user){
+    results = await execute_query("SELECT * FROM users WHERE user_id = ?", user);
+    if(results.length == 0)
+        return null;
+    return results;
 }
 
 
@@ -134,7 +151,10 @@ module.exports = {
     get_users,
     add_image,
     add_user_to_image,
-    get_user_images
+    get_user_images,
+    add_image_to_group,
+    get_group,
+    get_all_user_data
 };
 
     db_connect();
@@ -151,6 +171,7 @@ async function runUserTests(){
 
     var test = await execute_query("SELECT * FROM  users");
     console.log(test);  
+    console.log(await get_all_user_data("test"))
     //con.end();
 }
 
@@ -164,9 +185,11 @@ async function runUrlTests(){
 
     await add_user_to_image("eggert.com", "test");
     await add_user_to_image("google.com", "test");
-       
+    await add_image_to_group("google.com", "searchengines");
+    await add_image_to_group("yahoo.com", "searchengines");
     
     console.log(await get_user_images("test"));
+    console.log(await get_group("search engines"));
 
 }
 runUserTests();
