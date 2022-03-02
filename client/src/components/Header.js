@@ -7,7 +7,7 @@ function Header() {
 	return(
 		<div className="header">
 			<div className="container flex">
-				<h1 className="logo">temp</h1>
+				<h1 className="logo">NFT Trading Simulator</h1>
 				<nav>
 					<ul>
 						<li><Link to="/" >Home</Link></li>
