@@ -157,7 +157,8 @@ module.exports = {
     get_user_images,
     add_image_to_group,
     get_group,
-    get_all_user_data
+    get_all_user_data,
+    get_all_images
 };
 
     db_connect();
