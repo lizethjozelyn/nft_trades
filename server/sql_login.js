@@ -127,6 +127,10 @@ async function get_all_images(){
 }
 
 
+function convert_to_json(data){
+    return JSON.stringify(data);
+}
+
 //pretties up con.query, lets you await it
 //example:
 //await execute query("SELECT * FROM users WHERE user_id = ?", "steve")
@@ -158,7 +162,8 @@ module.exports = {
     add_image_to_group,
     get_group,
     get_all_user_data,
-    get_all_images
+    get_all_images,
+    convert_to_json
 };
 
     db_connect();
@@ -175,6 +180,7 @@ async function runUserTests(){
 
     var test = await execute_query("SELECT * FROM  users");
     console.log(test);  
+    console.log(convert_to_json(test));
     console.log(await get_all_user_data("test"))
     //con.end();
 }
