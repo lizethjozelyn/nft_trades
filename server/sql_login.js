@@ -1,7 +1,8 @@
 var mysql = require('mysql');
 var bcrypt = require('bcrypt');
 const { promisify } = require('util');
-const config = require('config')
+const config = require('config');
+const { NULL } = require('mysql/lib/protocol/constants/types');
 
 
 //Check discord for the configs.
@@ -75,14 +76,21 @@ async function get_users(){
     return results;
 }
 
-async function add_image(url){
+async function add_image(url, name = undefined, group = undefined){
     var test = await execute_query("SELECT * FROM images WHERE url = ?", url);
     if(test.length !== 0){
         return false;
     }
     await execute_query("INSERT INTO images (url) VALUES (?)", url);
+    if(name)
+        await set_image_name(url, name);
+    if(group)
+        await add_image_to_group(url, group);
 }
 
+async function set_image_name(url, name){
+    await execute_query("UPDATE images SET image_name = ? WHERE url = ?", [name, url]);
+}
 async function add_image_to_group(url, group){
     await execute_query("UPDATE images SET image_group = ? WHERE url = ?", [group, url]);
 }
@@ -123,7 +131,7 @@ async function get_all_user_data(user){
 }
 
 async function get_all_images(){
-    return await execute_query("SELECT url FROM images");
+    return await execute_query("SELECT * FROM images");
 }
 
 
@@ -163,7 +171,8 @@ module.exports = {
     get_group,
     get_all_user_data,
     get_all_images,
-    convert_to_json
+    convert_to_json,
+    set_image_name,
 };
 
     db_connect();
@@ -192,6 +201,8 @@ async function runUrlTests(){
     await add_image("yahoo.com");
     await add_image("eggert.com")
     await add_image("smallberg.com");
+    await add_image("test.com", "test image 1")
+    await add_image("test2.com", "test  image 2", "groupy mc groupface" )
 
     await add_user_to_image("eggert.com", "test");
     await add_user_to_image("google.com", "test");

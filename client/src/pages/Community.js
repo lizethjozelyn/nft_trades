@@ -6,7 +6,7 @@ import users from './../components/MOCK_USER.json'
 
 function Community({}) {
   return (
-    <div className="Ap">
+    <div className="App">
 
 
 	  <h1>Find a collector</h1>
