@@ -10,32 +10,119 @@ function SearchBar({placeholder, data}) {
 
 	//const [username, setUsername] = useState('');	
 	const [userList, setUserList] = useState([]);
+	const [nameList, setNameList] = useState([]);
+	const [groupList, setGroupList] = useState([]);
+	const [responseList, setResponseList] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
 	const [searchState, setSearchState] = useState('');
+	
+	
+	/*******
+		TODO:
+			condense code
+			figure out way to reset board on mode change
+			write api calls
+	
+	******/
+	
+	
+	
+	const setActiveData = () => {
+		console.log(data);
+		
+		
+		
+		
+	}
+	
 	console.log(userList.length);
 	const sendQuery = e => {
-		const username=e.target.value;
+		console.log(data);
+		setActiveData();
+		const apiCall = "http://localhost:3305/search/" + data;
+		const searchQuery=e.target.value;
 		//let url = "http://localhost:3305/search/q=" + e.target.value;
 		console.log(userList.length);
-		if (userList.length==0) {
-			Axios.get("http://localhost:3305/search").then((response) => {
-				//console.log(response);
-				setUserList(response.data);
-				//setFilteredData([]);
-				setSearchState("");		
-			});	
-		} else if (username.length>0) {
-				setSearchState("No Users Found");		
-			
-			const searchWord = username;
-			const newFilter = userList.filter((value) => {
-				return value.user_id.includes(searchWord);
-			})
-			
-			setFilteredData(newFilter);
-		} else {
-				setFilteredData([]);
-			
+		
+		//will be condensed later
+		if (data=='user') {			
+			if (userList.length==0) {
+				Axios.get(apiCall).then((response) => {
+					//console.log(response);
+					setUserList(response.data);
+					//setFilteredData([]);
+					setSearchState("");		
+				});	
+			} else if (searchQuery.length>0) {
+					const msg = "No " + data + " Found";
+					//msg doesn't update immediately on mode change, so wipe search query on mode change
+					//or have community.js handle this
+					setSearchState(msg);		
+				
+				const searchWord = searchQuery;
+				const newFilter = userList.filter((value) => {
+					return value.user_id.includes(searchWord);
+				})
+				
+				setFilteredData(newFilter);
+			} else {
+					setFilteredData([]);
+				
+			}
+		
+		} else if (data=='name') {	
+			if (nameList.length==0) {
+				Axios.get(apiCall).then((response) => {
+					//console.log(response);
+					setNameList(response.data);
+					//setFilteredData([]);
+					setSearchState("");		
+				});	
+			} else if (searchQuery.length>0) {
+					const msg = "No " + data + " Found";
+					//msg doesn't update immediately on mode change, so wipe search query on mode change
+					//or have community.js handle this
+					setSearchState(msg);		
+				
+				const searchWord = searchQuery;
+				const newFilter = nameList.filter((value) => {
+					
+					//CHANGE THIS TO BE APPROPRIATE WITH WHAT DATA YOU NEED TO GRAB ****************************************************************
+					return value.user_id.includes(searchWord);
+				})
+				
+				setFilteredData(newFilter);
+			} else {
+					setFilteredData([]);
+				
+			}
+		} else {			
+			if (groupList.length==0) {
+				console.log(apiCall);
+				console.log("GROUP CALL");
+				Axios.get(apiCall).then((response) => {
+					//console.log(response);
+					setGroupList(response.data);
+					//setFilteredData([]);
+					setSearchState("");		
+				});	
+			} else if (searchQuery.length>0) {
+					const msg = "No " + data + " Found";
+					//msg doesn't update immediately on mode change, so wipe search query on mode change
+					//or have community.js handle this
+					setSearchState(msg);		
+				
+				const searchWord = searchQuery;
+				const newFilter = groupList.filter((value) => {
+					return value.user_id.includes(searchWord);
+				})
+				
+				setFilteredData(newFilter);
+			} else {
+					setFilteredData([]);
+				
+			}
+		
 		}
 		console.log("S");
 		//console.log(url);
