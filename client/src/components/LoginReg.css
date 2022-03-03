@@ -5,41 +5,43 @@
 .login-container {
 	width: 300px;
 	height: 400px;
-	background-color: white;
+	background-color: #A9D58F;
 	border-radius: 10px;
 	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 	text-align:center;
 	margin: 20px 0;
+    font-size: 20px;
+    color: #F0EAD1;
+    
 	
 }
 
 .login-container h1{
-	margin: 50px 0;
-
+	margin: 20px 10px;
 }
 
 .login-container p{
-	margin: 10px 50px;
+	margin: 15px 50px;
 	text-align: left;
 }
 
 .input-area {
 
     font-size: 15px;
-    color: #666666;
-
     width: 60%;
-    background: #e6e6e6;
+    background: #F0EAD1;
+    color:#8AB76F;
     height: 50px;
 	border: none;
     /* border-radius: 25px; */
-    padding: 0 15px 0 34px;
+    padding: 0 15px 0 30px;
 	margin: auto;
 }
 
 .input-btn {
 	width: 100px;
+    background: #F0EAD1;
 	text-align:center;
 	margin: 40px 10px;
-	
+    color: #8AB76F
 }

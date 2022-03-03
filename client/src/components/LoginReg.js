@@ -39,21 +39,19 @@ function LoginReg() {
 	
 	
 	return(
-		<div className="login-box">
-			<div className="login-container">
-				<section className="cred">
-					<h1>Logo< /h1>
-					<p>Username< /p>
-					<input className="input-area" type="text" name= "email" onChange={e => {setUsername(e.target.value);} } />
-					<p>Password< /p>
-					<input className="input-area" type="password" name= "password" onChange={e => {setPassword(e.target.value);} } />
-					<button className="input-btn" onClick={login}> Login </button>
-					<button className="input-btn" onClick={test}> Register </button>
-				</section>
-
-			</div>
-
-		</div>
+           <div className="login-box">
+                   <div className="login-container">
+                       <section className="cred">
+                           <h1>Account Login</h1>
+                           <p>Username</p>
+                           <input className="input-area" type="text" name= "email" onChange={e => {setUsername(e.target.value);} } />
+                           <p>Password</p>
+                           <input className="input-area" type="password" name= "password" onChange={e => {setPassword(e.target.value);} } />
+                           <button className="input-btn" onClick={login}> Login </button>
+                           <button className="input-btn" onClick={test}> Register </button>
+                       </section>
+           </div>
+           </div>
 	);
 }
 			/* used to show username was grabbed
