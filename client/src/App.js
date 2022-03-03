@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header'
-import Home from './pages/Home' 
+import Home from './pages/Home'
 import Dashboard from './pages/Dashboard' 
 import Community from './pages/Community' 
 import Profile from './pages/Profile' 
@@ -16,7 +16,7 @@ function App() {
 		<Routes>
 			
 			<Route path='/' element={ <Home /> }/>
-			<Route path='/dashboard' element={ <Dashboard /> }/>
+			<Route path='/profile' element={ <Profile /> }/>
 			<Route path='/store' element={ <Upload /> } />
 			<Route exact path='/community' element={ <Community /> } />
 			<Route exact path='/community/*' element={ <Dashboard /> } />
