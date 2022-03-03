@@ -1,15 +1,15 @@
 import logo from './../logo.svg';
-
 import Header from './../components/Header' 
+import Upload from './../components/FileUpload'
 
-function Dashboard() {
+function Store() {
   return (
     <div className="App">
-
-      <header className="App-header">
+      <header className="">
+          <Upload/>
       </header>
     </div>
   );
 }
 
-export default Dashboard;
+export default Store;

@@ -1,16 +1,14 @@
 import logo from './../logo.svg';
-
 import Header from './../components/Header' 
+import LoginReg from './../components/LoginReg'
 
-function Profile(props) {
+function Profile(){
   return (
     <div className="App">
-
-      <header className="App-header">
-        
+      <header className="">
+          <LoginReg/>
       </header>
     </div>
   );
 }
-
 export default Profile;
