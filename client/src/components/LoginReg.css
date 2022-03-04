@@ -5,7 +5,7 @@
 .login-container {
 	width: 300px;
 	height: 400px;
-	background-color: #A9D58F;
+	background-color: #7393B3;
 	border-radius: 10px;
 	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 	text-align:center;
@@ -30,7 +30,7 @@
     font-size: 15px;
     width: 60%;
     background: #F0EAD1;
-    color:#8AB76F;
+    color:#7393B3;
     height: 50px;
 	border: none;
     /* border-radius: 25px; */
@@ -43,5 +43,5 @@
     background: #F0EAD1;
 	text-align:center;
 	margin: 40px 10px;
-    color: #8AB76F
+    color: #7393B3
 }

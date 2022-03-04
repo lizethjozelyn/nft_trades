@@ -1,6 +1,8 @@
 .header {
 	background-color: var(--primary-color);
-	border-radius: 30px;	
+	border-radius: 30px;
+    color: #F0EAD1
+    
 }
 
 .header ul {
@@ -14,7 +16,7 @@
 	padding: 0 15px;
 	font-size: 20px;
 	text-decoration: none;
-	color: black;
+	color: #F0EAD1;
 }
 
 .container {
