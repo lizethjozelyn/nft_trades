@@ -1,7 +1,8 @@
 var mysql = require('mysql');
 var bcrypt = require('bcrypt');
 const { promisify } = require('util');
-const config = require('config')
+const config = require('config');
+const { NULL } = require('mysql/lib/protocol/constants/types');
 
 
 //Check discord for the configs.
@@ -71,19 +72,36 @@ async function login_check(user_data){
 
 async function get_users(){
     results = await execute_query("SELECT user_id FROM users");
-
 	console.log(JSON.stringify(results));
     return results;
-
 }
 
-async function add_image(url){
+async function add_image(url, name = undefined, group = undefined){
     var test = await execute_query("SELECT * FROM images WHERE url = ?", url);
     if(test.length !== 0){
         return false;
     }
     await execute_query("INSERT INTO images (url) VALUES (?)", url);
+    if(name)
+        await set_image_name(url, name);
+    if(group)
+        await add_image_to_group(url, group);
 }
+
+async function set_image_name(url, name){
+    await execute_query("UPDATE images SET image_name = ? WHERE url = ?", [name, url]);
+}
+async function add_image_to_group(url, group){
+    await execute_query("UPDATE images SET image_group = ? WHERE url = ?", [group, url]);
+}
+
+async function get_group(group){
+    results = await execute_query("SELECT * FROM images WHERE image_group = ?", group);
+    if(results.length == 0)
+        return null;
+    return results;
+}
+
 
 async function add_user_to_image(url, user){
     results = await execute_query("SELECT * FROM users WHERE user_id = ?", user);
@@ -105,7 +123,21 @@ async function get_user_images(user){
 
 }
 
+async function get_all_user_data(user){
+    results = await execute_query("SELECT * FROM users WHERE user_id = ?", user);
+    if(results.length == 0)
+        return null;
+    return results;
+}
 
+async function get_all_images(){
+    return await execute_query("SELECT * FROM images");
+}
+
+
+function convert_to_json(data){
+    return JSON.stringify(data);
+}
 
 //pretties up con.query, lets you await it
 //example:
@@ -134,7 +166,13 @@ module.exports = {
     get_users,
     add_image,
     add_user_to_image,
-    get_user_images
+    get_user_images,
+    add_image_to_group,
+    get_group,
+    get_all_user_data,
+    get_all_images,
+    convert_to_json,
+    set_image_name,
 };
 
     db_connect();
@@ -151,6 +189,8 @@ async function runUserTests(){
 
     var test = await execute_query("SELECT * FROM  users");
     console.log(test);  
+    console.log(convert_to_json(test));
+    console.log(await get_all_user_data("test"))
     //con.end();
 }
 
@@ -161,12 +201,17 @@ async function runUrlTests(){
     await add_image("yahoo.com");
     await add_image("eggert.com")
     await add_image("smallberg.com");
+    await add_image("test.com", "test image 1")
+    await add_image("test2.com", "test  image 2", "groupy mc groupface" )
 
     await add_user_to_image("eggert.com", "test");
     await add_user_to_image("google.com", "test");
-       
+    await add_image_to_group("google.com", "search engines");
+    await add_image_to_group("yahoo.com", "search engines");
     
     console.log(await get_user_images("test"));
+    console.log(await get_group("search engines"));
+    console.log(await get_all_images());
 
 }
 runUserTests();
