@@ -1,0 +1,29 @@
+.option-menu {
+	display: flex;
+	
+	
+	
+}
+
+.option-menu nav {
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);	
+	
+}
+
+
+
+
+.option-menu ul {
+	list-style-type: none;
+	display: flex;
+	
+}
+.option-menu a {
+	margin: 10px;
+	padding: 15px 15px;
+	text-decoration: none;
+	color: black;
+	text-align: center;
+	user-select: none;
+}
+
