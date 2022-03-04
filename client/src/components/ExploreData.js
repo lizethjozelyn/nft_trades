@@ -1,17 +1,17 @@
 export const ExploreData =[
     {
-        image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomicbook.com%2Fanime%2Fnews%2Fdemon-slayer-tanjiro-saves-nezuko-demon-blood-collection-tamayo-update%2F&psig=AOvVaw3RkiJwDdzLbvFqXKiD91q6&ust=1646436349067000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLCm6cKLq_YCFQAAAAAdAAAAABAD'
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png'
     },
     {
-        image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.xboxdynasty.de%2Fnews%2Fdemon-slayer-kimetsu-no-yaiba-hinokami-keppuutan%2Fzwei-audiooptionen-und-lokalisierte-untertitel-bestaetigt%2F&psig=AOvVaw3RkiJwDdzLbvFqXKiD91q6&ust=1646436349067000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLCm6cKLq_YCFQAAAAAdAAAAABAT'
+        image: 'https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80'
     },    {
-        image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.denofgeek.com%2Ftv%2Fdemon-slayer-season-2-ending-explained%2F&psig=AOvVaw3RkiJwDdzLbvFqXKiD91q6&ust=1646436349067000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLCm6cKLq_YCFQAAAAAdAAAAABAw'
+        image: 'https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg'
     },
     {
-        image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.forbes.com%2Fsites%2Fpaultassi%2F2021%2F02%2F14%2Fdemon-slayer-season-2-gets-a-new-trailer-and-vague-release-date%2F&psig=AOvVaw3RkiJwDdzLbvFqXKiD91q6&ust=1646436349067000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLCm6cKLq_YCFQAAAAAdAAAAABAy'
+        image: 'https://images.unsplash.com/photo-1612151855475-877969f4a6cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aGQlMjBpbWFnZXxlbnwwfHwwfHw%3D&w=1000&q=80'
     },
     {
-        image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomicbook.com%2Fanime%2Fnews%2Fdemon-slayer-season-2-anime-review-entertainment-district-arc%2F&psig=AOvVaw0IgHysYQY41aRu7PUi8v1l&ust=1646439618389000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNjYj9qXq_YCFQAAAAAdAAAAABAD'
+        image: 'https://www.w3schools.com/w3css/img_lights.jpg'
     }
 ]
 
