@@ -25,12 +25,14 @@ function Community({}) {
 	}
 
   return (
+
     <div className="community">
 
 
 	  <h1>Find a collector {searchMode}</h1>
 		<div className="option-menu">
 			<div className="container flex">
+
 
 				<nav>
 					<ul>
