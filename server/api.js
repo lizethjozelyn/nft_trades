@@ -35,7 +35,19 @@ app.get('/test', (req, res) => {
 	
 });
 
-app.get('/search', async function (req, res)  {
+app.get('/search/user', async function (req, res)  {
+	
+	console.log(await get_users());
+	res.send(await get_users());
+});
+
+app.get('/search/name', async function (req, res)  {
+	
+	console.log(await get_users());
+	res.send(await get_users());
+});
+
+app.get('/search/group', async function (req, res)  {
 	
 	console.log(await get_users());
 	res.send(await get_users());
