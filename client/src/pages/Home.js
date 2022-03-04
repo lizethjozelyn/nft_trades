@@ -17,11 +17,10 @@ const Home = () => {
   if (!Array.isArray(SliderData) || length <= 0) {
     return null;
   }
-  console.log(current);
 
   return (
     <>
-    <div style={{
+    <div className="background" style={{
       backgroundImage: `url("https://images.unsplash.com/photo-1530569673472-307dc017a82d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1976&q=80")`,
       backgroundRepeat: 'no-repeat',
     }}>

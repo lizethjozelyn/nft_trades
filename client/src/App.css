@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #2774AE;
+  --primary-color: #3688c7;
 
   --dark-color: #002240;
   --light-color: #000000;
@@ -104,4 +104,8 @@
   font-size: 1rem;
   font-weight: 50;
   top: 100px;
+}
+
+.background {
+  border-radius: 30px;
 }
