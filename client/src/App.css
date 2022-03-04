@@ -105,3 +105,7 @@
   font-weight: 50;
   top: 100px;
 }
+
+.background {
+  border-radius: 30px;
+}
