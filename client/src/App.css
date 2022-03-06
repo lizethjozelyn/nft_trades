@@ -54,6 +54,7 @@
 }
 
 .slider {
+  top: 50px;
   position: relative;
   height: 100vh;
   display: flex;
@@ -62,8 +63,8 @@
 }
 
 .image {
-  width: 1000px;
-  height: 600px;
+  max-width: 100%;
+  height: auto;
   border-radius: 10px;
 }
 
@@ -108,4 +109,11 @@
 
 .background {
   border-radius: 30px;
+}
+
+.community {
+  position: relative;
+  top: 30px;
+  font-size: 1rem;
+  color: #7393B3;
 }

@@ -25,8 +25,8 @@ function Community({}) {
 	}
 
   return (
-
-    <div className="community">
+	<>
+    <div className="community" >
 
 
 	  <h1>Find a collector {searchMode}</h1>
@@ -45,10 +45,12 @@ function Community({}) {
 
 			</div>
 		</div>
-	  <SearchBar placeholder="" data={searchMode} />
+	  <SearchBar placeholder="" data={searchMode}/>
 
 
     </div>
+
+	</>
   );
 }
 
