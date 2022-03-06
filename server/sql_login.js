@@ -89,10 +89,20 @@ async function add_image(url, name = undefined, group = undefined){
 }
 
 async function set_image_name(url, name){
+    var test = await execute_query("SELECT * FROM images WHERE url = ?", url);
+    if(test.length == 0){
+        return false;
+    }
     await execute_query("UPDATE images SET image_name = ? WHERE url = ?", [name, url]);
+    return true;
 }
 async function add_image_to_group(url, group){
+    var test = await execute_query("SELECT * FROM images WHERE url = ?", url);
+    if(test.length == 0){
+        return false;
+    }
     await execute_query("UPDATE images SET image_group = ? WHERE url = ?", [group, url]);
+    return true;
 }
 
 async function get_group(group){
@@ -196,7 +206,7 @@ async function runUserTests(){
 
 async function runUrlTests(){
 
-
+    /*
     await add_image("google.com");
     await add_image("yahoo.com");
     await add_image("eggert.com")
@@ -208,10 +218,22 @@ async function runUrlTests(){
     await add_user_to_image("google.com", "test");
     await add_image_to_group("google.com", "search engines");
     await add_image_to_group("yahoo.com", "search engines");
+    */
+
+    await add_image("https://i.imgur.com/fjKRYan.jpeg")
+    await add_image("https://i.imgur.com/vd14d46.jpeg", "keyboard 2")
+    await add_image("https://i.imgur.com/GxBwOSt.jpg", "keyboard 3", "keyboards")
+
+    console.log("should be true: " + await add_image_to_group("https://i.imgur.com/fjKRYan.jpeg", "keyboards"))
+    console.log("should be true: " +await add_user_to_image("https://i.imgur.com/fjKRYan.jpeg", "test"))
+
+    console.log("should be false: " +await add_image_to_group("not an image", "keyboards"))
+    console.log("should be false: " +await add_user_to_image("https://i.imgur.com/fjKRYan.jpeg", "not a user"))
+    console.log("should be false: " +await add_user_to_image("not an image", "user"))
     
-    console.log(await get_user_images("test"));
-    console.log(await get_group("search engines"));
-    console.log(await get_all_images());
+    await get_user_images("test");
+    await get_group("keyboards");
+    await get_all_images();
 
 }
 runUserTests();
