@@ -1,9 +1,29 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { SliderData } from '../components/SliderData'
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
-
+import Axios from "axios";
 const Home = () => {
   const [current, setCurrent] = useState(0);
+  
+  
+  useEffect(() => {
+    // ⬇ This calls my get request from the server
+    getSlides();
+  }, []);
+  
+  const getSlides = () => {
+	  console.log("get img")
+
+	Axios.get("http://localhost:3305/search/name").then((response) => {
+                    //console.log(response);
+                    return(response.data); 
+
+                });  
+
+	  
+  }
+  
+  
   const length = SliderData.length;
 
   const nextSlide = () => {
