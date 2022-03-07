@@ -63,8 +63,8 @@
 }
 
 .image {
-  max-width: 100%;
-  height: auto;
+  max-height: 700px;
+  width: auto;
   border-radius: 10px;
 }
 
