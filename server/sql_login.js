@@ -145,6 +145,20 @@ async function get_all_images(){
 }
 
 
+async function get_all_group_names(){
+    return await execute_query("SELECT DISTINCT image_group FROM images WHERE image_group IS NOT NULL")
+}
+
+async function six_rand_images(){
+    var data = await execute_query("SELECT * FROM images ORDER BY RAND()")
+    if(data.length > 6)
+    {
+        return data.slice(0, 6)
+    }
+    return data
+}
+
+
 function convert_to_json(data){
     return JSON.stringify(data);
 }
@@ -183,6 +197,8 @@ module.exports = {
     get_all_images,
     convert_to_json,
     set_image_name,
+    get_all_group_names,
+    six_rand_images
 };
 
     db_connect();
@@ -224,6 +240,17 @@ async function runUrlTests(){
     await add_image("https://i.imgur.com/vd14d46.jpeg", "keyboard 2")
     await add_image("https://i.imgur.com/GxBwOSt.jpg", "keyboard 3", "keyboards")
 
+    await add_image("https://i.imgur.com/Wrm0g6Y.jpg")
+    await add_image("https://i.imgur.com/cqKvnil.jpg")
+    await add_image("https://i.imgur.com/swQRT0Z.png")
+    await add_image("https://i.imgur.com/PjVbBYf.png")
+    await add_image("https://i.imgur.com/cjNiQSD.jpg")
+    await add_image("https://i.imgur.com/HbjRDzC.jpg")
+    await add_image("https://i.imgur.com/0Inuc18.png")
+    
+    await add_image_to_group("https://i.imgur.com/HbjRDzC.jpg", "valorant");
+
+
     console.log("should be true: " + await add_image_to_group("https://i.imgur.com/fjKRYan.jpeg", "keyboards"))
     console.log("should be true: " +await add_user_to_image("https://i.imgur.com/fjKRYan.jpeg", "test"))
 
@@ -236,8 +263,17 @@ async function runUrlTests(){
     await get_all_images();
 
 }
-runUserTests();
-runUrlTests();
+
+async function runNewTests()
+{
+    console.log(await six_rand_images());
+    console.log(await get_all_group_names());
+}
+
+
+//runUserTests();
+//runUrlTests();
+//runNewTests();
 //note: you want to run con.end(); at the end of accessing the DB
 //I can add that to the end of functions if you'd like, it might slow down
 //the code though because it would mean you have to reconnect for each query
