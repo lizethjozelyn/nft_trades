@@ -14,7 +14,7 @@ const Home = () => {
   const getSlides = () => {
 	  console.log("get img")
 
-  	Axios.get("http://localhost:3305/search/name").then((response) => {
+  	Axios.get("http://localhost:3305/search/random").then((response) => {
                     // console.log(response.data[0].url);
                     setSliderData(response.data);
 
