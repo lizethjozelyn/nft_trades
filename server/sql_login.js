@@ -76,11 +76,32 @@ async function get_users(){
     return results;
 }
 
-async function add_image(url, name = undefined, group = undefined){
+async function check_if_url_exists(url){
     var test = await execute_query("SELECT * FROM images WHERE url = ?", url);
     if(test.length !== 0){
         return false;
     }
+}
+
+async function check_if_name_exists(name){
+    var test = await execute_query("SELECT * FROM images WHERE image_name = ?", name);
+    if(test.length > 0){
+        return false;
+    }
+}
+
+
+
+
+async function add_image(url, name = undefined, group = undefined){
+
+    if(check_if_url_exists(url))
+        return false
+    if(name){
+        if(check_if_name_exists(name))
+            return false
+    }
+
     await execute_query("INSERT INTO images (url) VALUES (?)", url);
     if(name)
         await set_image_name(url, name);
@@ -93,11 +114,11 @@ async function set_image_name(url, name){
     if(test.length == 0){
         return false;
     }
-    var test = await execute_query("SELECT * FROM images WHERE name = ?", name);
-    if(test.length > 0){
+    var test2 = await execute_query("SELECT * FROM images WHERE image_name = ?", name);
+    if(test2.length > 0){
         return false;
     }
-    
+
     await execute_query("UPDATE images SET image_name = ? WHERE url = ?", [name, url]);
     return true;
 }
@@ -208,7 +229,9 @@ module.exports = {
     set_image_name,
     get_all_group_names,
     six_rand_images,
-    get_url_from_name
+    get_url_from_name,
+    check_if_name_exists,
+    check_if_url_exists
 };
 
     db_connect();
@@ -268,6 +291,7 @@ async function runUrlTests(){
     console.log("should be false: " +await add_user_to_image("https://i.imgur.com/fjKRYan.jpeg", "not a user"))
     console.log("should be false: " +await add_user_to_image("not an image", "user"))
     
+
     await get_user_images("test");
     await get_group("keyboards");
     await get_all_images();
@@ -276,9 +300,13 @@ async function runUrlTests(){
 
 async function runNewTests()
 {
+    console.log(await set_image_name("https://i.imgur.com/PjVbBYf.png", "valorant image"));
+    console.log(await set_image_name("blah", "valorant image 2"));
+    console.log(await set_image_name("https://i.imgur.com/fjKRYan.jpeg", "valorant image"));
     console.log(await six_rand_images());
     console.log(await get_all_group_names());
     console.log(await get_url_from_name("keyboard 2"))
+
 }
 
 
