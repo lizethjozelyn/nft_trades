@@ -7,6 +7,7 @@ function LoginReg() {
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const [text, setText] = useState('Login or Register');
 
 	const onChange = e => {
 		setUsername(e.target.value);
@@ -14,23 +15,32 @@ function LoginReg() {
 		console.log(username);
 	};
 
+	
 	//prob use https to send password or something idk
 	const login = () => {
-		
 		Axios.post("http://localhost:3305/login", {
 			username: username,
-			password: "Password",
+			password: password,
 		}).then((response) => {
 			console.log(response);
+			if (response.data) {setText("Logged In.")}
+			else {setText("Incorrect Details")}
 		});	
 
 		
 	}
+
+	
 	const test = () => {	
 
-		Axios.get("http://localhost:3305/test").then((response) => {
+		Axios.post("http://localhost:3305/register", {
+			username: username,
+			password: password,
+		}).then((response) => {
 			console.log(response);
-		});
+			if (response.data) {setText("Account Created")}
+			else {setText("Account Exists")}
+		});	
 		
 	}
 	
@@ -47,7 +57,8 @@ function LoginReg() {
                            <input className="input-area" type="text" name= "email" onChange={e => {setUsername(e.target.value);} } />
                            <p>Password</p>
                            <input className="input-area" type="password" name= "password" onChange={e => {setPassword(e.target.value);} } />
-                           <button className="input-btn" onClick={login}> Login </button>
+						   <h3 className='result'>{text}</h3>
+						   <button className="input-btn" onClick={login}> Login </button>
                            <button className="input-btn" onClick={test}> Register </button>
                        </section>
            </div>

@@ -20,6 +20,16 @@ app.post('/login', async function (req, res) {
 	res.send(retVal);
 
 });
+
+app.post('/register', async function (req, res) {
+	const username = req.body.username;
+	const password = req.body.password;
+	const user_data = {'username' : req.body.username, "password" : req.body.password};
+	const retVal = await insert_user(user_data);
+	//await runTests();
+	res.send(retVal);
+
+});
 //create a routes file for axios to call so we don't hardcode api url
 app.post('/upload', async function (req, res) {
 
