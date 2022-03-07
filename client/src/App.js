@@ -7,7 +7,7 @@ import Community from './pages/Community'
 import Profile from './pages/Profile'
 import LoginReg from './components/LoginReg' 
 import { Route, Routes} from "react-router-dom";
-import { SliderData } from './components/SliderData';
+import User from './pages/User';
 function App() {
   return (
     <div className="App">
@@ -19,7 +19,7 @@ function App() {
 			<Route path='/store' element={ <Store /> } />
 			<Route exact path='/community' element={ <Community /> } />
 			<Route path='/login' element={ <LoginReg /> } />
-			
+			<Route path='/community/*' element={ <User />} />
 		</Routes>
     </div>
   );
