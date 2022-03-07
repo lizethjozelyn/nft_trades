@@ -1,0 +1,65 @@
+/* The grid: Four equal columns that floats next to each other */
+.header {
+	background-color: var(--primary-color);
+	border-radius: 30px;
+    color: #F0EAD1
+    
+}
+
+.header ul {
+	list-style-type: none;
+	display: flex;
+	
+}
+
+.header a {
+	margin: 10px;
+	padding: 0 15px;
+	font-size: 20px;
+	text-decoration: none;
+	color: #F0EAD1;
+}
+
+.container {
+	max-width: 1100px;
+	margin: 0 auto;
+	overflow: auto;
+
+
+}
+
+
+.flex {
+	display: flex;
+	height: 100px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+.profile {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.logo {
+	padding-left: 20px;
+}
+
+.row {
+    width: 1200px;
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    column-gap: 10px;
+    margin-bottom: 0;
+    font-size: 0;
+    align-items: center;
+  }
+  .row .column {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 100%;
+    align-items: center;
+  }
