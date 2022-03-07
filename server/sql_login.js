@@ -93,6 +93,11 @@ async function set_image_name(url, name){
     if(test.length == 0){
         return false;
     }
+    var test = await execute_query("SELECT * FROM images WHERE name = ?", name);
+    if(test.length > 0){
+        return false;
+    }
+    
     await execute_query("UPDATE images SET image_name = ? WHERE url = ?", [name, url]);
     return true;
 }
@@ -158,6 +163,10 @@ async function six_rand_images(){
     return data
 }
 
+async function get_url_from_name(image_name){
+    return await execute_query("SELECT url FROM images WHERE image_name = ?", image_name)
+}
+
 
 function convert_to_json(data){
     return JSON.stringify(data);
@@ -198,7 +207,8 @@ module.exports = {
     convert_to_json,
     set_image_name,
     get_all_group_names,
-    six_rand_images
+    six_rand_images,
+    get_url_from_name
 };
 
     db_connect();
@@ -268,6 +278,7 @@ async function runNewTests()
 {
     console.log(await six_rand_images());
     console.log(await get_all_group_names());
+    console.log(await get_url_from_name("keyboard 2"))
 }
 
 
