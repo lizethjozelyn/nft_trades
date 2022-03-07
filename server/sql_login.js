@@ -155,8 +155,7 @@ async function get_user_images(user){
     results = await execute_query("SELECT * FROM users WHERE user_id = ?", user);
     if(results.length == 0)
         return null;
-    return await execute_query("SELECT url FROM images WHERE user_id = ?", user);
-
+    return await execute_query("SELECT * FROM images WHERE user_id = ?", user);
 }
 
 async function get_all_user_data(user){

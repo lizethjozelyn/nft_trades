@@ -1,7 +1,7 @@
 
 const express = require("express");
 const app = express();
-const { db_connect, login_check, insert_user, get_users, get_all_images, get_group, six_rand_images } = require('./sql_login');
+const { db_connect, login_check, insert_user, get_users, get_user_images, get_all_images, get_group, six_rand_images } = require('./sql_login');
 var cors = require('cors');
 
 app.use(cors());
@@ -29,6 +29,13 @@ app.post('/register', async function (req, res) {
 	//await runTests();
 	res.send(retVal);
 
+});
+
+app.post('/getimage', async function (req, res) {
+	const username = req.body.username;
+	const retVal = await get_user_images(username);
+	//await runTests();
+	res.send(retVal);
 });
 //create a routes file for axios to call so we don't hardcode api url
 app.post('/upload', async function (req, res) {
