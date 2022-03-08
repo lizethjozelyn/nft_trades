@@ -55,11 +55,11 @@ The online database is somewhat unstable, due to a free hosting service being us
 
 6. modify the config.json file to have your password for the "localhost" config (replace the password, in other words), and modify sql_login.js to use the local database: comment out `const con_vars = config.get("db");` and uncomment `//const con_vars = config.get("localhost");`
 
-7. Run (INSERT TEST CODE SCRIPT HERE) to fill the database with some test images and users.
+7. Run `run_config_tests.js` to fill the database with some test images and users (this also will tell you if your database is working)
 
-8. Launch the api as normal
+8. If you get "ER_NOT_SUPPORTED_AUTH_MODE", use `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456789';` (replace 123456789 with your password), then run `FLUSH PRIVILEGES`. You may need to restart workbench to make this work.
 
- 
+9. Launch the api as normal
 
 WIP
 
