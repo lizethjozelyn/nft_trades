@@ -37,6 +37,13 @@ app.post('/getimage', async function (req, res) {
 	//await runTests();
 	res.send(retVal);
 });
+
+app.post('/getgroup', async function (req, res) {
+	const group = req.body.group;
+	const retVal = await get_group(group);
+	//await runTests();
+	res.send(retVal);
+});
 //create a routes file for axios to call so we don't hardcode api url
 app.post('/upload', async function (req, res) {
 

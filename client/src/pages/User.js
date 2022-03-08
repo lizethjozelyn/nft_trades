@@ -17,19 +17,43 @@ function User() {
       }, []);
 
     const urlArray = window.location.pathname.split("/");
-    console.log(urlArray[2]); 
-
+    
+    const word = urlArray[3].replace('%20', ' ');
+    console.log(word); 
     const getImages = () => {
         console.log("get img")
+        if(urlArray[2] === "u"){
+            Axios.post("http://localhost:3305/getimage", {
+                    username: urlArray[3],
+                }).then((response) => {
+                    console.log(response);
+                    setData(response.data);
+                });
+            }
+        if(urlArray[2] === "g"){
+            console.log("this is a group"); 
+            Axios.post("http://localhost:3305/getgroup", {
+                    group: urlArray[3],
+                }).then((response) => {
+                    console.log(response);
+                    setData(response.data);
+                });
+        }
+        if(urlArray[2] === "n"){
+            console.log('this is for image names');
+            Axios.get("http://localhost:3305/search/name").then((response) => {
+                    for(let i = 0; i < response.data.length; i++){
+                        // console.log(response.data[i].image_name);
+                        if(response.data[i].image_name === word){
+                            setData(response.data[i]);
+                            console.log(response.data[i].url);
+                        }
+                    }
 
-        Axios.post("http://localhost:3305/getimage", {
-                username: urlArray[2],
-            }).then((response) => {
-                console.log(response);
-                setData(response.data)
-            });
+                });  
+        }
     }
-    
+
     return (
         <>
         <div className="App">
@@ -43,19 +67,31 @@ function User() {
             </Routes>
         </div>
         <div className="community-user">
-            {userData.length > 0 ? (
+            {urlArray[2] === "n" ? (
                 <div className="community-user-images">
-                    {userData.map((value, i) => {
-                        return (
-                            <div className="community-user-image" key={i}>
-                                <img src={value.url}></img>
-                            </div>
-                        );
-                    })}
+                        
+                    <div className="community-user-image">
+                        <img src={userData.url}></img>
+                    </div>
+                
                 </div>
             ) : (
-                <p> No images </p>
-            )}
+                userData.length > 0 ? (
+                    <div className="community-user-images">
+                        
+                        {userData.map((value, i) => {
+                            return (
+                                <div className="community-user-image" key={i}>
+                                    <img src={value.url}></img>
+                                </div>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <p> No images </p>
+                )
+            )
+            }
             </div>
         </>
       );
