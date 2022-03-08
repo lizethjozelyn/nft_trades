@@ -14,6 +14,8 @@ function SearchBar({placeholder, data}) {
 	const [groupList, setGroupList] = useState([]);
 	const [responseList, setResponseList] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
+	const [filteredDataN, setFilteredDataN] = useState([]);
+	const [filteredDataG, setFilteredDataG] = useState([]);
 	const [searchState, setSearchState] = useState('');
 	
 	
@@ -88,12 +90,15 @@ function SearchBar({placeholder, data}) {
 				const newFilter = nameList.filter((value) => {
 					
 					//CHANGE THIS TO BE APPROPRIATE WITH WHAT DATA YOU NEED TO GRAB ****************************************************************
-					return value.user_id.includes(searchWord);
+					if (value.image_name!=null) {
+					console.log(value.image_name);
+					return value.image_name.includes(searchWord);
+				}
 				})
 				
-				setFilteredData(newFilter);
+				setFilteredDataN(newFilter);
 			} else {
-					setFilteredData([]);
+					setFilteredDataN([]);
 				
 			}
 		} else {			
@@ -114,12 +119,12 @@ function SearchBar({placeholder, data}) {
 				
 				const searchWord = searchQuery;
 				const newFilter = groupList.filter((value) => {
-					return value.user_id.includes(searchWord);
+					return value.image_group.includes(searchWord);
 				})
 				
-				setFilteredData(newFilter);
+				setFilteredDataG(newFilter);
 			} else {
-					setFilteredData([]);
+					setFilteredDataG([]);
 				
 			}
 		
@@ -128,32 +133,85 @@ function SearchBar({placeholder, data}) {
 		//console.log(url);
 	};
 
+	const getUrl = (a, b) => {
+		return(a+b);
+	}
+
 	
 //prob slice data in serv	
-  return (
+	if (data=='user') {	
+	
+	  return (
 
-	<div className="searchbar">
-		<div className="searchInputs">
-			<input type="text" aria-label="Search by -- username" placeholder="Search by -- username" className="inputBox" onChange={sendQuery} />
-		</div>
-		{filteredData.length > 0 && userList ? (
-			<div className="searchResults">
-				{filteredData.slice(0, 10).map((value, i) => {
-					return (
-						<div key={i} className="user-result">
-							<Link to={value.user_id} key={i}>
-								{value.user_id}{" "}
-							</Link>{" "}
-						</div>
-					);
-				})}
+		<div className="searchbar">
+			<div className="searchInputs">
+				<input type="text" aria-label="Search by username" placeholder="Search by username" className="inputBox" onChange={sendQuery} />
 			</div>
-		) : (
-			<p> {searchState} </p>
-		)}
-	</div>
+			{filteredData.length > 0 && userList ? (
+				<div className="searchResults">
+					{filteredData.slice(0, 10).map((value, i) => {
+						return (
+							<div key={i} className="user-result">
+								<Link to={getUrl("u/", value.user_id)} key={i}>
+									{value.user_id}{" "}
+								</Link>{" "}
+							</div>
+						);
+					})}
+				</div>
+			) : (
+				<p> {searchState} </p>
+			)}
+		</div>
 
-  );
+	  );
+	} else if (data=='name') {
+		return(
+		<div className="searchbar">
+			<div className="searchInputs">
+				<input type="text" aria-label="Search by image" placeholder="Search by image" className="inputBox" onChange={sendQuery} />
+			</div>
+			{filteredDataN.length > 0 && nameList ? (
+				<div className="searchResults">
+					{filteredDataN.slice(0, 10).map((value, i) => {
+						return (
+							<div key={i} className="user-result">
+								<Link to={getUrl("n/", value.image_name)} key={i}>
+									{value.image_name}{" "}
+								</Link>{" "}
+							</div>
+						);
+					})}
+				</div>
+			) : (
+				<p> {searchState} </p>
+			)}
+		</div>
+		);
+	} else {
+		return(
+		<div className="searchbar">
+			<div className="searchInputs">
+				<input type="text" aria-label="Search by image" placeholder="Search by image" className="inputBox" onChange={sendQuery} />
+			</div>
+			{filteredDataG.length > 0 && nameList ? (
+				<div className="searchResults">
+					{filteredDataG.slice(0, 10).map((value, i) => {
+						return (
+							<div key={i} className="user-result">
+								<Link to={getUrl("g/", value.image_group)} key={i}>
+									{value.image_group}{" "}
+								</Link>{" "}
+							</div>
+						);
+					})}
+				</div>
+			) : (
+				<p> {searchState} </p>
+			)}
+		</div>
+		);		
+	}		
 }
-
+//CHANGE image_name for group
 export default SearchBar;
