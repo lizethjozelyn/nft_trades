@@ -1,7 +1,7 @@
 
 const express = require("express");
 const app = express();
-const { db_connect, login_check, insert_user, get_users, get_user_images, get_all_images, get_group, six_rand_images } = require('./sql_login');
+const { db_connect, login_check, insert_user, get_users, get_user_images, get_all_images, get_group, six_rand_images, get_all_group_names } = require('./sql_login');
 var cors = require('cors');
 
 app.use(cors());
@@ -67,7 +67,7 @@ app.get('/search/name', async function (req, res)  {
 app.get('/search/group', async function (req, res)  {
 	
 
-	res.send(await get_users());
+	res.send(await get_all_group_names());
 });
 
 app.get('/search/random', async function (req, res)  {

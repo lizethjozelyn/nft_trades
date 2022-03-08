@@ -18,11 +18,14 @@ function App() {
 			<Route path='/profile' element={ <Profile /> }/>
 			<Route path='/store' element={ <Store /> } />
 			<Route exact path='/community' element={ <Community /> } />
+			<Route path='/community/*' element={ <LoginReg /> } />
+
 			<Route path='/login' element={ <LoginReg /> } />
 			<Route path='/community/*' element={ <User />} />
 		</Routes>
     </div>
   );
 }
-
+/*			<Route path='/community/n/*' element={ <Header /> } />			
+			<Route path='/community/g/*' element={ <Store /> } />*/
 export default App;
