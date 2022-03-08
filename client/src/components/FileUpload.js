@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function FileUpload() {
 
 	const [file, setFile] = useState('');
-	const [filename, setFilename] = useState('Choose File');
+	const [filename, setFilename] = useState('');
 	const [isFilePicked, setIsFilePicked] = useState(false);
 
 	const onChange = e => {
@@ -41,13 +41,11 @@ function FileUpload() {
 				</section>
 
 			</div>
-			<button onClick={onSubmit}>Generate!
+			<button onClick={onSubmit}>Upload!
 
 				{file &&
 					<div className='row mt-5'>
 						<div className='col-md-6 m-auto'>
-
-							<p>upload!</p>
 						</div>
 					</div>
 				}

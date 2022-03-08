@@ -183,6 +183,15 @@ async function six_rand_images(){
     return data
 }
 
+async function ten_images(){
+    var data = await execute_query("SELECT * FROM images ORDER BY RAND()")
+    if(data.length > 10)
+    {
+        return data.slice(0, 10)
+    }
+    return data
+}
+
 async function get_url_from_name(image_name){
     return await execute_query("SELECT url FROM images WHERE image_name = ?", image_name)
 }
@@ -230,7 +239,8 @@ module.exports = {
     six_rand_images,
     get_url_from_name,
     check_if_name_exists,
-    check_if_url_exists
+    check_if_url_exists,
+    ten_images
 };
 
     db_connect();

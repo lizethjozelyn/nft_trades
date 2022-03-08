@@ -96,7 +96,7 @@
   font-size: 2.5rem;
   /*font-family: "Times New Roman", Times, serif;*/
   font-weight: 200;
-  top: 80px;
+  top: 50px;
 }
 
 .nftbody {
@@ -104,7 +104,7 @@
   color:#7393B3;
   font-size: 1rem;
   font-weight: 50;
-  top: 100px;
+  top: 60px;
 }
 
 .background {
@@ -116,4 +116,22 @@
   top: 30px;
   font-size: 1rem;
   color: #7393B3;
+}
+
+.footer{
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #7393B3;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.grid{
+  display: grid;
+  align-items: center;
+  margin-top: 100px;
+  grid-template-columns: repeat(3, 1fr);
+ 
 }

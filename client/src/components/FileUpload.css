@@ -7,11 +7,9 @@
 
 
 .custom-file {
-
     position: relative;
-
-	
-	
+    height: 50 px;
+    width: 50 px;
 }
 
 .target p {
@@ -21,7 +19,7 @@
 	text-align: center;
     left: 0;
     right:0;	
-	top: 15px;
+	top: 40px;
 	
 	
 	
@@ -32,7 +30,7 @@
 .target input {
     outline: 2px dashed #92b0b3;
 	outline-offset: -10px;
-    padding: 120px 25% 85px 35%;
+    padding: 50px 25% 30px 35%;
 
 	/*t, r, b, l*/
 
@@ -42,7 +40,7 @@
 
     position: relative;
     z-index: 12;	
-	top: -95px;
+	top: -45px;
 	opacity: 0.8;
 	
 	
@@ -55,7 +53,6 @@
 
 
 }
-
 
 
 
