@@ -223,7 +223,7 @@ function execute_query(sql, args=null) {
 module.exports = {
     execute_query,
     insert_user,
-    login_check, 
+    login_check,    
     db_connect,
     get_users,
     add_image,
@@ -314,7 +314,9 @@ async function runNewTests()
     console.log(await set_image_name("https://i.imgur.com/fjKRYan.jpeg", "valorant image"));
     console.log(await six_rand_images());
     console.log(await get_all_group_names());
-    console.log(await get_url_from_name("keyboard 2"))
+    console.log(await get_url_from_name("keyboard 2"));
+    await add_user_to_image("https://i.imgur.com/swQRT0Z.png", "test");
+    await set_image_name("https://i.imgur.com/swQRT0Z.png", "omen");
 
 }
 
