@@ -3,7 +3,6 @@ import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
 import { useNavigate } from "react-router-dom"
 import FileUpload from '../components/FileUpload';
 import Axios from "axios";
-import "./User.css"
 
 const Store = () => {
   const [current, setCurrent] = useState(0);
