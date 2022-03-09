@@ -3,6 +3,7 @@ var bcrypt = require('bcrypt');
 const { promisify } = require('util');
 const config = require('config');
 const { NULL } = require('mysql/lib/protocol/constants/types');
+const { exec } = require('child_process');
 
 
 //Check discord for the configs.
@@ -47,6 +48,33 @@ async function encrypt_user(data){
         });
     });
 }
+
+
+async function generate_username_hash(username){
+    return new Promise((resolve, reject) => {
+        bcrypt.hash(username, 1, function(err, user_hash){
+            return resolve(user_hash);
+        });
+    });
+}
+
+async function insert_user_hash(username){
+    test = await execute_query("SELECT * FROM users WHERE user_id = ?", [username]);
+    if(test.length == 0)
+        return NULL;
+    user_hash = await generate_username_hash(username);
+    await execute_query("UPDATE users SET user_hash = ? WHERE user_id = ?", [user_hash, username]);
+    return user_hash;
+}
+
+async function get_user_from_hash(hash){
+    return await execute_query("SELECT user_id FROM users WHERE user_hash = ?", [hash]);
+}
+
+async function get_hash_from_user(username){
+    return await execute_query("SELECT user_hash FROM users WHERE user_id = ?", [username]);
+}
+
 
 //inserts user into database
 //returns false if user already exists
@@ -244,7 +272,22 @@ module.exports = {
     get_url_from_name,
     check_if_name_exists,
     check_if_url_exists,
-    ten_images
+    ten_images,
+    insert_user_hash,
+    get_user_from_hash,
+    get_hash_from_user
 };
 
+
+
+async function test_hash(){
+    var new_hash = await insert_user_hash("test");
+    console.log(new_hash);
+    console.log(await get_user_from_hash(new_hash));
+    new_hash = await insert_user_hash("adfsadfasfsadf");
+    console.log(new_hash);
+    console.log(await get_user_from_hash(new_hash));
+}
+
 db_connect();
+//test_hash();

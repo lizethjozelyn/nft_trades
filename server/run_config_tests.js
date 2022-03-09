@@ -56,6 +56,16 @@ async function runUrlTests(){
     await sql_login.add_image("https://i.imgur.com/TtUJNyW.png", "Steph's Ape", "GTA: Grand Theft Ape");
     await sql_login.add_image("https://i.imgur.com/mzJB7vp.png", "Baby's Ape", "GTA: Grand Theft Ape");
     await sql_login.add_image("https://i.imgur.com/KCjktME.png", "Fallon's Ape", "GTA: Grand Theft Ape");
+
+    await sql_login.add_image("https://i.imgur.com/W0ymEo1.png", "Violet Egg", "Rainbow Eggs Collection 1");
+    await sql_login.add_image("https://i.imgur.com/ZPTZqLR.png", "Red Egg", "Rainbow Eggs Collection 1");
+    await sql_login.add_image("https://i.imgur.com/lw1PqKp.png", "Blue Egg", "Rainbow Eggs Collection 1");
+    await sql_login.add_image("https://i.imgur.com/dM3WpfH.png", "Indigo Egg", "Rainbow Eggs Collection 1");
+    await sql_login.add_image("https://i.imgur.com/QXCGWqi.png", "Green Egg", "Rainbow Eggs Collection 1");
+    await sql_login.add_image("https://i.imgur.com/80bcYY6.png", "Yellow Egg", "Rainbow Eggs Collection 1");
+    await sql_login.add_image("https://i.imgur.com/V8fcSBf.png", "Orange Egg", "Rainbow Eggs Collection 1");
+    await sql_login.add_image("https://i.imgur.com/oifDvuf.png", "White Egg", "Rainbow Eggs Collection 1");
+
     await sql_login.get_all_images();
     console.log("done");
 
@@ -75,6 +85,6 @@ async function runNewTests()
 }
 
 sql_login.db_connect();
-runUserTests();
+//runUserTests();
 runUrlTests();
-runNewTests();
+//runNewTests();
