@@ -206,6 +206,14 @@ async function get_all_group_names(){
     return await execute_query("SELECT DISTINCT image_group FROM images WHERE image_group IS NOT NULL")
 }
 
+async function get_all_unowned_images(){
+    return await execute_query("SELECT * FROM images WHERE user_id IS NULL")
+}
+
+async function get_all_owned_images(){
+    return await execute_query("SELECT * FROM images WHERE user_id IS NOT NULL")
+}
+
 async function six_rand_images(){
     var data = await execute_query("SELECT * FROM images ORDER BY RAND()")
     if(data.length > 6)
@@ -275,7 +283,9 @@ module.exports = {
     ten_images,
     insert_user_hash,
     get_user_from_hash,
-    get_hash_from_user
+    get_hash_from_user,
+    get_all_unowned_images,
+    get_all_owned_images
 };
 
 
@@ -287,6 +297,8 @@ async function test_hash(){
     new_hash = await insert_user_hash("adfsadfasfsadf");
     console.log(new_hash);
     console.log(await get_user_from_hash(new_hash));
+    console.log(await get_all_unowned_images());
+    console.log(await get_all_owned_images());
 }
 
 db_connect();
