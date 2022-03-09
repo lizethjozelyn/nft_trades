@@ -1,8 +1,8 @@
 import React, {Fragment, useEffect, useState} from 'react'
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
 import { useNavigate } from "react-router-dom"
 import FileUpload from '../components/FileUpload';
 import Axios from "axios";
+import Cookies from 'universal-cookie'
 
 const Store = () => {
   const [current, setCurrent] = useState(0);
@@ -30,15 +30,28 @@ const Store = () => {
   }
 
 
-  const redirect = () => {
-     navigate("/purchase");
- };
-
   if (!Array.isArray(ExploreData) || length <= 0) {
     return null;
   }
 
-  
+  const purchase = () => {
+   const cookies = new Cookies();
+   let url =  this;
+   if (cookies.get('username')) { 
+      let user = (cookies.get('username')) 
+      Axios.post("http://localhost:3305/store/purchase", {
+			url: url,
+			user: user,
+		})
+      alert("Purchase Complete!")
+
+
+    }
+    else if(!cookies.get('username')){
+      alert("Please sign in before purchase!")
+    }
+};
+
 
   return (
     <>
@@ -56,22 +69,22 @@ const Store = () => {
          <Fragment>
             <div class="grid">
                   <div class = "grid-item">
-                     <img src={ExploreArray[0]} width="300" height={300} onClick={redirect} gridcolumn ></img>
+                     <img src={ExploreArray[0]} width="300" height={300} onClick={purchase}></img>
                   </div>
                   <div class = "grid-item">
-                     <img src={ExploreArray[1]} width="300" height={300} onClick={redirect}></img>
+                     <img src={ExploreArray[1]} width="300" height={300} onClick={purchase}></img>
                   </div>
                   <div class = "grid-item">
-                     <img src={ExploreArray[2]} width="300" height={300} onClick={redirect}></img>
+                     <img src={ExploreArray[2]} width="300" height={300} onClick={purchase}></img>
                   </div>
                   <div class = "grid-item">
-                     <img src={ExploreArray[3]} width="300" height={300} onClick={redirect}></img>
+                     <img src={ExploreArray[3]} width="300" height={300} onClick={purchase}></img>
                   </div>
                   <div class = "grid-item">
-                     <img src={ExploreArray[4]} width="300" height={300} onClick={redirect}></img>
+                     <img src={ExploreArray[4]} width="300" height={300} onClick={purchase}></img>
                   </div>
                   <div class = "grid-item">
-                     <img src={ExploreArray[5]} width="300" height={300} onClick={redirect}></img>
+                     <img src={ExploreArray[5]} width="300" height={300} onClick={purchase}></img>
                   </div>
             </div>
 

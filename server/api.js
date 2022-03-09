@@ -84,6 +84,14 @@ app.get('/search/random', async function (req, res)  {
 });
 
 
+app.get('/store/purchase', async function (req, res)  {
+	const url = req.body.group;
+	const user = req.body.url;
+	res.send(await add_user_to_image());
+});
+
+
+
 //The port you have below hosts it like so: http://localhost:PORT
 app.listen(3305, () => {
   console.log("Running server");
