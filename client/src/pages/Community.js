@@ -8,19 +8,23 @@ import { Fragment, useState } from 'react';
 
 function Community({}) {
 	const [searchMode, setSearchMode] = useState('user');
+	const [searchMsg, setSearchMsg] = useState('Find a collector');
 
 	const userMode = () => {
 		setSearchMode("user");
+		setSearchMsg("Find a collector");
 		//console.log("S");
 	}
 
 	const nameMode = () => {
 		setSearchMode("name");
-		console.log("S");
+		setSearchMsg("Find an image");
+		//console.log("S");
 	}
 
 	const groupMode = () => {
 		setSearchMode("group");
+		setSearchMsg("Find a group");
 		//console.log("S");
 	}
 
@@ -29,7 +33,7 @@ function Community({}) {
     <div className="community" >
 
 
-	  <h1>Find a collector {searchMode}</h1>
+	  <h1>{searchMsg}</h1>
 		<div className="option-menu">
 			<div className="container flex">
 
