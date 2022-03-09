@@ -78,16 +78,18 @@ async function get_users(){
 
 async function check_if_url_exists(url){
     var test = await execute_query("SELECT * FROM images WHERE url = ?", url);
-    if(test.length !== 0){
-        return false;
+    if(test.length != 0){
+        return true;
     }
+    return false;
 }
 
 async function check_if_name_exists(name){
     var test = await execute_query("SELECT * FROM images WHERE image_name = ?", name);
-    if(test.length > 0){
-        return false;
+    if(test.length != 0){
+        return true;
     }
+    return false;
 }
 
 
@@ -95,12 +97,14 @@ async function check_if_name_exists(name){
 
 async function add_image(url, name = undefined, group = undefined){
 
-    if(check_if_url_exists(url))
+    if(await check_if_url_exists(url))
         return false
+
     if(name){
-        if(check_if_name_exists(name))
+        if(await check_if_name_exists(name))
             return false
     }
+
 
     await execute_query("INSERT INTO images (url) VALUES (?)", url);
     if(name)
@@ -243,87 +247,4 @@ module.exports = {
     ten_images
 };
 
-    db_connect();
-//Comment this bit out if you don't want to run tests
-async function runUserTests(){
-    //db_connect();
-    console.log(await insert_user({'username' : "test", "password" : "Password"}));
-    console.log(await insert_user({'username' : "test2", "password" : "Passwordle"}));
-    console.log(await login_check({'username' : "test", "password" : "Password"}));
-    console.log(await login_check({'username' : "test", "password" : "NotThePassword"}));
-    console.log(await login_check({'username' : "notauser", "password" : "NotThePassword"}));
-    console.log(await insert_user({'username' : "jack.son", "password" : "Password"}));
-
-
-    var test = await execute_query("SELECT * FROM  users");
-    console.log(test);  
-    console.log(convert_to_json(test));
-    console.log(await get_all_user_data("test"))
-    //con.end();
-}
-
-async function runUrlTests(){
-
-    /*
-    await add_image("google.com");
-    await add_image("yahoo.com");
-    await add_image("eggert.com")
-    await add_image("smallberg.com");
-    await add_image("test.com", "test image 1")
-    await add_image("test2.com", "test  image 2", "groupy mc groupface" )
-
-    await add_user_to_image("eggert.com", "test");
-    await add_user_to_image("google.com", "test");
-    await add_image_to_group("google.com", "search engines");
-    await add_image_to_group("yahoo.com", "search engines");
-    */
-
-    await add_image("https://i.imgur.com/fjKRYan.jpeg")
-    await add_image("https://i.imgur.com/vd14d46.jpeg", "keyboard 2")
-    await add_image("https://i.imgur.com/GxBwOSt.jpg", "keyboard 3", "keyboards")
-
-    await add_image("https://i.imgur.com/Wrm0g6Y.jpg")
-    await add_image("https://i.imgur.com/cqKvnil.jpg")
-    await add_image("https://i.imgur.com/swQRT0Z.png")
-    await add_image("https://i.imgur.com/PjVbBYf.png")
-    await add_image("https://i.imgur.com/cjNiQSD.jpg")
-    await add_image("https://i.imgur.com/HbjRDzC.jpg")
-    await add_image("https://i.imgur.com/0Inuc18.png")
-    
-    await add_image_to_group("https://i.imgur.com/HbjRDzC.jpg", "valorant");
-
-
-    console.log("should be true: " + await add_image_to_group("https://i.imgur.com/fjKRYan.jpeg", "keyboards"))
-    console.log("should be true: " +await add_user_to_image("https://i.imgur.com/fjKRYan.jpeg", "test"))
-
-    console.log("should be false: " +await add_image_to_group("not an image", "keyboards"))
-    console.log("should be false: " +await add_user_to_image("https://i.imgur.com/fjKRYan.jpeg", "not a user"))
-    console.log("should be false: " +await add_user_to_image("not an image", "user"))
-    
-
-    await get_user_images("test");
-    await get_group("keyboards");
-    await get_all_images();
-
-}
-
-async function runNewTests()
-{
-    console.log(await set_image_name("https://i.imgur.com/PjVbBYf.png", "valorant image"));
-    console.log(await set_image_name("blah", "valorant image 2"));
-    console.log(await set_image_name("https://i.imgur.com/fjKRYan.jpeg", "valorant image"));
-    console.log(await six_rand_images());
-    console.log(await get_all_group_names());
-    console.log(await get_url_from_name("keyboard 2"));
-    await add_user_to_image("https://i.imgur.com/swQRT0Z.png", "test");
-    await set_image_name("https://i.imgur.com/swQRT0Z.png", "omen");
-
-}
-
-
-//runUserTests();
-//runUrlTests();
-//runNewTests();
-//note: you want to run con.end(); at the end of accessing the DB
-//I can add that to the end of functions if you'd like, it might slow down
-//the code though because it would mean you have to reconnect for each query
+db_connect();
