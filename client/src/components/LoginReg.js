@@ -3,6 +3,7 @@ import logo from './../logo.svg';
 import './LoginReg.css'
 import { Link } from "react-router-dom";
 import Axios from "axios";
+import Cookies from 'universal-cookie'
 function LoginReg() {
 
 	const [username, setUsername] = useState('');
@@ -12,6 +13,7 @@ function LoginReg() {
 	const [userDisplay, setUserPage] = useState('none')
 	const [images, setImages] = useState([])
 
+	const cookies = new Cookies();
 	const onChange = e => {
 		setUsername(e.target.value);
 
@@ -25,11 +27,12 @@ function LoginReg() {
 			username: username,
 			password: password,
 		}).then((response) => {
-			console.log(response);
-			if (response.data) {
+			if (response.data[0].user_hash.length > 0) {
 				setText("Logged In.")
+				cookies.set('username', username);
+				cookies.set('token', response.data[0].user_hash);
+				console.log(cookies.get('token'));
 				setLoginPage('none')
-				console.log(username)
 				Axios.post("http://localhost:3305/getimage", {
 					username: username,
 				}).then((response) => {
