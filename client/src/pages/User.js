@@ -66,33 +66,39 @@ function User() {
                 <Route path='/login' element={ <LoginReg /> } />
             </Routes>
         </div>
-        <div className="community-user">
-            {urlArray[2] === "n" ? (
-                <div className="community-user-images">
-                        
-                    <div className="community-user-image">
-                        <img src={userData.url}></img>
-                    </div>
-                
-                </div>
-            ) : (
-                userData.length > 0 ? (
+        <div className="background" style={{
+        backgroundImage: `url("https://images.unsplash.com/photo-1524865291454-215bdc75819e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1976&q=80")`,
+        backgroundRepeat: 'no-repeat',
+        }}>
+            <div className="community-text"> {word} </div>
+            <div className="community-user">
+                {urlArray[2] === "n" ? (
                     <div className="community-user-images">
-                        
-                        {userData.map((value, i) => {
-                            return (
-                                <div className="community-user-image" key={i}>
-                                    <img src={value.url}></img>
-                                </div>
-                            );
-                        })}
+                            
+                        <div>
+                            <img className="community-user-image" src={userData.url}></img>
+                        </div>
+                    
                     </div>
                 ) : (
-                    <p> No images </p>
+                    userData.length > 0 ? (
+                        <div className="community-user-images">
+                            
+                            {userData.map((value, i) => {
+                                return (
+                                    <div key={i}>
+                                        <img className="community-user-image" src={value.url}></img>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        <div className="default"> No images </div>
+                    )
                 )
-            )
-            }
-            </div>
+                }
+                </div>
+        </div>
         </>
       );
 }
