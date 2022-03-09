@@ -1,7 +1,7 @@
 
 const express = require("express");
 const app = express();
-const { db_connect, login_check, insert_user, get_users, get_user_images, get_all_images, get_group, six_rand_images, get_all_group_names } = require('./sql_login');
+const { db_connect, login_check, insert_user, get_users, get_user_images, get_all_images, get_group, six_rand_images, get_all_group_names, get_cookie_login } = require('./sql_login');
 var cors = require('cors');
 
 app.use(cors());
@@ -15,7 +15,7 @@ app.post('/login', async function (req, res) {
 	const username = req.body.username;
 	const password = req.body.password;
 	const user_data = {'username' : req.body.username, "password" : req.body.password};
-	const retVal = await login_check(user_data);
+	const retVal = await get_cookie_login(user_data);
 	//await runTests();
 	res.send(retVal);
 

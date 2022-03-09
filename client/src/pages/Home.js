@@ -1,10 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
 import Axios from "axios";
+import Cookies from 'universal-cookie'
 const Home = () => {
   const [current, setCurrent] = useState(0);
   const [SliderData, setSliderData] = useState({});
   
+  const cookies = new Cookies();
+  if (cookies.get('username')) { // check if the cookie exists
+    console.log(cookies.get('username')) // print out the username (example of how to access the username)
+  }
+
   useEffect(() => {
     // ⬇ This calls my get request from the server
     

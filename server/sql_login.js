@@ -85,6 +85,7 @@ async function insert_user(user){
     }
     var user_2 = await encrypt_user(user);
     await execute_query("INSERT INTO users VALUES(?, ?)", user_2);
+    await insert_user_hash(user['username']);
     return true;
 }
 
@@ -96,6 +97,14 @@ async function login_check(user_data){
         return false;
     return await bcrypt.compare(user_data['password'], results[0]['user_pass']);
 
+}
+
+async function get_cookie_login(user_data){
+    var login = await login_check(user_data)
+    if (login) {
+        return get_hash_from_user(user_data['username'])
+    }
+    return ''
 }
 
 async function get_users(){
@@ -263,7 +272,8 @@ function execute_query(sql, args=null) {
 module.exports = {
     execute_query,
     insert_user,
-    login_check,    
+    login_check, 
+    get_cookie_login,   
     db_connect,
     get_users,
     add_image,
