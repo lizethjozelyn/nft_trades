@@ -5,7 +5,6 @@ import Axios from "axios";
 import Cookies from 'universal-cookie'
 
 const Store = () => {
-  const [current, setCurrent] = useState(0);
   const [ExploreData, setExploreData] = useState({});
   const navigate = useNavigate();
 
@@ -16,7 +15,7 @@ const Store = () => {
   const getSlides = () => {
      console.log("get img")
 
-     Axios.get("http://localhost:3305/search/random").then((response) => {
+     Axios.get("http://localhost:3305/search/unowned").then((response) => {
                     setExploreData(response.data);
 
                 });  
