@@ -112,7 +112,8 @@ function SearchBar({placeholder, data}) {
 					setSearchState("");		
 				});	
 			} else if (searchQuery.length>0) {
-					const msg = "No " + data + " Found";
+					//const msg = "No " + data + " Found";
+					const msg = "Not Found"
 					//msg doesn't update immediately on mode change, so wipe search query on mode change
 					//or have community.js handle this
 					setSearchState(msg);		
@@ -192,7 +193,7 @@ function SearchBar({placeholder, data}) {
 		return(
 		<div className="searchbar">
 			<div className="searchInputs">
-				<input type="text" aria-label="Search by image" placeholder="Search by image" className="inputBox" onChange={sendQuery} />
+				<input type="text" aria-label="Search by group" placeholder="Search by group" className="inputBox" onChange={sendQuery} />
 			</div>
 			{filteredDataG.length > 0 && nameList ? (
 				<div className="searchResults">
