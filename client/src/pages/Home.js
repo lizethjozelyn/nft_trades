@@ -50,7 +50,7 @@ const Home = () => {
       Welcome to NFT Trading Simulator
     </section>
     <section className="nftbody">
-      Now supporting trading, buying NFTs, and viewing friends' profiles!
+      Now supporting gifting, buying NFTs, and viewing friends' profiles!
     </section>
     <section className="slider">
       <FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide}/>
