@@ -7,6 +7,7 @@ import Community from "./Community";
 import Profile from "./Profile";
 import LoginReg from "../components/LoginReg";
 import { FaImages } from "react-icons/fa";
+import "./User.css"
 
 function User() {
     const [userData, setData] = useState(0);
@@ -18,7 +19,8 @@ function User() {
 
     const urlArray = window.location.pathname.split("/");
     
-    const word = urlArray[3].replace('%20', ' ');
+    const word = urlArray[3].replace(/%20/g, ' ');
+    console.log(urlArray[3]);
     console.log(word); 
     const getImages = () => {
         console.log("get img")
@@ -33,7 +35,7 @@ function User() {
         if(urlArray[2] === "g"){
             console.log("this is a group"); 
             Axios.post("http://localhost:3305/getgroup", {
-                    group: urlArray[3],
+                    group: word,
                 }).then((response) => {
                     console.log(response);
                     setData(response.data);
@@ -68,7 +70,7 @@ function User() {
         </div>
         <div className="background" style={{
         backgroundImage: `url("https://images.unsplash.com/photo-1524865291454-215bdc75819e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1976&q=80")`,
-        backgroundRepeat: 'no-repeat',
+        
         }}>
             <div className="community-text"> {word} </div>
             <div className="community-user">
