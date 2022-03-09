@@ -69,22 +69,22 @@ const Store = () => {
          <Fragment>
             <div class="grid">
                   <div class = "grid-item">
-                     <img src={ExploreArray[0]} width="300" height={300} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[0]} onClick={purchase}></img>
                   </div>
                   <div class = "grid-item">
-                     <img src={ExploreArray[1]} width="300" height={300} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[1]} onClick={purchase}></img>
                   </div>
                   <div class = "grid-item">
-                     <img src={ExploreArray[2]} width="300" height={300} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[2]} onClick={purchase}></img>
                   </div>
                   <div class = "grid-item">
-                     <img src={ExploreArray[3]} width="300" height={300} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[3]} onClick={purchase}></img>
                   </div>
                   <div class = "grid-item">
-                     <img src={ExploreArray[4]} width="300" height={300} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[4]} onClick={purchase}></img>
                   </div>
                   <div class = "grid-item">
-                     <img src={ExploreArray[5]} width="300" height={300} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[5]} onClick={purchase}></img>
                   </div>
             </div>
 
