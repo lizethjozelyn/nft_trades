@@ -15,7 +15,8 @@ function FileUpload() {
 		Axios.post("http://localhost:3305/search/upload", {
 			url: url,
 		})
-		alert("Image Uploaded! Thank you <3")
+		alert("Thank you for contributing <3");
+		setUrl("");
 	}
 
 	return(
@@ -28,7 +29,7 @@ function FileUpload() {
 				placeholder="Upload Image URL Here!"
 				onChange={onChange}
 			/>
-			<button type="upload" onClick={function(){uploadImg(url)}}>Upload</button>
+			<button type="button" onClick={function(){uploadImg(url)}}>Upload</button>
 		</form>
 		</div>
 	)
