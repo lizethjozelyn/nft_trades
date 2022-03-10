@@ -84,7 +84,24 @@ async function runNewTests()
 
 }
 
+
+
+async function add_image_library()
+{
+    await sql_login.add_image("https://imgur.com/1LRhof8.png", "Hummingbird", "For the Birds");
+    await sql_login.add_image("https://imgur.com/nNK1t3i.png", "Kingfisher", "For the Birds");
+    await sql_login.add_image("https://imgur.com/sWHYiuO.png", "Parakeet", "For the Birds");
+    await sql_login.add_image("https://i.imgur.com/Xojin5H.png", "Sleepytime", "For the Birds");
+    await sql_login.add_image("https://i.imgur.com/Pz1YxNC.png", "Eagle", "For the Birds");
+    await sql_login.add_image("https://i.imgur.com/IgJlynp.png", "Mr. Bluebird", "For the Birds");
+    await sql_login.add_image("https://i.imgur.com/bwlDiDE.png", "Who Can?", "For the Birds");
+    await sql_login.add_image("https://i.imgur.com/CN3sV5E.png", "Spike", "For the Birds");
+    console.log("Done");
+
+}
+
 sql_login.db_connect();
 //runUserTests();
-runUrlTests();
+//runUrlTests();
 //runNewTests();
+add_image_library();
