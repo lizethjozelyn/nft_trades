@@ -3,62 +3,33 @@ import logo from './../logo.svg';
 
 import './FileUpload.css'
 import { Link } from "react-router-dom";
+import Axios from "axios";
 function FileUpload() {
-
-	const [file, setFile] = useState('');
-	const [filename, setFilename] = useState('');
-	const [isFilePicked, setIsFilePicked] = useState(false);
+	const [url, setUrl] = useState('');
 
 	const onChange = e => {
-		setFile(e.target.files[0]);
-		setFilename(e.target.files[0].name);
-
+		setUrl(e.target.value);	
 	};
 
-	const onSubmit = e => {
-
-
-		e.preventDefault();
-		console.log(file);
-		/*Even this simple block of code wouldn't work without e.preventDefault();
-		*/
-
+	function uploadImg(url){
+		Axios.post("http://localhost:3305/search/upload", {
+			url: url,
+		})
+		alert("Image Uploaded! Thank you <3")
 	}
 
-
-
-
-
-
-	return (
-		<div className="custom-file">
-			<div className="container">
-				<section className="target">
-					<p style={{ opacity: 0 }} > s</p>
-					<p>Drop your WebP, PNG or JPEG files here!</p>
-					<p style={{ opacity: 0 }} > s</p>
-					<input type="file" accept="image/*" onChange={onChange} />
-				</section>
-
-			</div>
-			<button onClick={onSubmit}>Upload!
-
-				{file &&
-					<div className='row mt-5'>
-						<div className='col-md-6 m-auto'>
-						</div>
-					</div>
-				}
-			</button>
-
+	return(
+		<div className='input'>
+		<form action="/" method="get">
+			<input
+				value = {url}
+				type="text"
+				id="header-search"
+				placeholder="Upload Image URL Here!"
+				onChange={onChange}
+			/>
+			<button type="upload" onClick={function(){uploadImg(url)}}>Upload</button>
+		</form>
 		</div>
-	);
-}
-/*
-Add props that allow for resizing for dashboard
-<img src={logo} className="App-logo" alt="logo" Style="width:10%" />*/
-
-
-export default FileUpload;
-
-
+	)
+	}	export default FileUpload;

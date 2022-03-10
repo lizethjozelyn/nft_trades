@@ -35,7 +35,7 @@ const Store = () => {
 
   const purchase = () => {
    const cookies = new Cookies();
-   let url =  this;
+   let url =  this.src;
    if (cookies.get('username')) { 
       let user = (cookies.get('username')) 
       Axios.post("http://localhost:3305/store/purchase", {
@@ -44,9 +44,8 @@ const Store = () => {
 		})
       alert("Purchase Complete!")
 
-
     }
-    else if(!cookies.get('username')){
+    else{
       alert("Please sign in before purchase!")
     }
 };
@@ -87,9 +86,9 @@ const Store = () => {
                   </div>
             </div>
 
-          {/* <div className="footer">
+          <div className="footer">
                <FileUpload/>
-   </div> */}
+          </div> 
          </Fragment>
     </div>
     </>
