@@ -6,7 +6,26 @@ import Cookies from 'universal-cookie'
 
 const Store = () => {
   const [ExploreData, setExploreData] = useState({});
-  const navigate = useNavigate();
+
+  const [url, setUrl] = useState('');
+
+	const purchase = e => {
+		setUrl(e.target.value);
+    const cookies = new Cookies();
+    if (cookies.get('username')) { 
+       let user = (cookies.get('username')) 
+       Axios.post("http://localhost:3305/store/purchase", {
+       url: url,
+       user: user,
+     })
+       alert("Purchase Complete!")
+ 
+     }
+     else{
+       alert("Please sign in before purchase!")
+     }
+	};
+
 
   useEffect(() => {    
     getSlides();
@@ -32,24 +51,6 @@ const Store = () => {
   if (!Array.isArray(ExploreData) || length <= 0) {
     return null;
   }
-
-  const purchase = () => {
-   const cookies = new Cookies();
-   let url =  this.src;
-   if (cookies.get('username')) { 
-      let user = (cookies.get('username')) 
-      Axios.post("http://localhost:3305/store/purchase", {
-			url: url,
-			user: user,
-		})
-      alert("Purchase Complete!")
-
-    }
-    else{
-      alert("Please sign in before purchase!")
-    }
-};
-
 
   return (
     <>
