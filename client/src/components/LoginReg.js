@@ -8,6 +8,7 @@ function LoginReg() {
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const [otheruser, setOtherUsername] = useState('')
 	const [text, setText] = useState('Login or Register');
 	const [loginPageDisplay, setLoginPage] = useState('flex')
 	const [userDisplay, setUserPage] = useState('none')
@@ -47,6 +48,10 @@ function LoginReg() {
 
 	}
 
+	const giftUser = () => {
+		console.log("Gifting to " + otheruser)
+	}
+
 
 	const test = () => {
 
@@ -77,13 +82,26 @@ function LoginReg() {
 					</section>
 				</div>
 			</div>
-			<div className="user-page" style={{ display: userDisplay }}>User Profile
+
+			<div className="user-page" style={{ display: userDisplay }}>
+				<section className="heading">
+					User Profile
+				</section>
+				<section className="nftbody">
+					Total Images: {images.length}
+				</section>
 				{images.length > 0 ? (
-					<div className="userimages">
+					<div className="grid">
 						{images.map((value, i) => {
 							return (
-								<div className="user-image" key={i}>
-									<img src={value.url} width="200" height={200}></img>
+								<div className="grid-item" key={i}>
+									<img className="grid-image" src={value.url} width="200" height={200}></img>
+									<div>
+										<button className="gift-btn" onClick={giftUser}>
+											Gift
+										</button>
+									</div>
+									<input className="input-username" type="text" name="email" onChange={e => { setOtherUsername(e.target.value); }} />
 								</div>
 							);
 						})}
