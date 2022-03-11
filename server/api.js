@@ -1,7 +1,7 @@
 
 const express = require("express");
 const app = express();
-const { db_connect, login_check, insert_user, get_users, get_user_images, get_all_images, get_group, six_rand_images, get_all_group_names, get_cookie_login, add_user_to_image, six_rand_unowned_images} = require('./sql_login');
+const { db_connect, login_check, insert_user, get_users, get_user_images, get_all_images, get_group, six_rand_images, get_all_group_names, get_cookie_login, add_user_to_image, six_rand_unowned_images, add_image} = require('./sql_login');
 var cors = require('cors');
 
 app.use(cors());
@@ -87,7 +87,8 @@ app.get('/search/random', async function (req, res)  {
 app.post('/store/purchase', async function (req, res)  {
 	const url = req.body.group;
 	const user = req.body.url;
-	res.send(await add_user_to_image());
+	const retVal = await add_user_to_image(url, user);
+	res.send(retVal);
 });
 
 
@@ -96,6 +97,13 @@ app.get('/search/unowned', async function (req, res)  {
 	console.log(await six_rand_unowned_images());
 	res.send(await six_rand_unowned_images());
 });
+
+app.post('/search/upload', async function (req, res)  {
+	const url = req.body.group;
+	const retVal = await add_image(url);
+	res.send(retVal);
+});
+
 
 //The port you have below hosts it like so: http://localhost:PORT
 app.listen(3305, () => {

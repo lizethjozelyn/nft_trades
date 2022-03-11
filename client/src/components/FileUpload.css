@@ -1,29 +1,9 @@
-.header a {
-	margin: 10px;
-	padding: 0 15px;
-	font-size: 20px;
 
-}
-
-
-.custom-file {
-    position: relative;
-    height: 50 px;
-    width: 50 px;
-}
-
-.target p {
-    position: relative;
-    z-index: 11;
-	
-	text-align: center;
-    left: 0;
-    right:0;	
-	top: 40px;
-	
-	
-	
-	
+.input {
+    height: 34px;
+    margin: 4px;
+    padding: 4px;
+    font-size: 24px;
 }
 
 
