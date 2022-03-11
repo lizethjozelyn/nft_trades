@@ -7,18 +7,16 @@ import Cookies from 'universal-cookie'
 const Store = () => {
   const [ExploreData, setExploreData] = useState({});
 
-  const [url, setUrl] = useState('');
 
 	function purchase(img){
-		setUrl(img);
     const cookies = new Cookies();
     if (cookies.get('username')) { 
        let user = (cookies.get('username')) 
        Axios.post("http://localhost:3305/store/purchase", {
-       url: url,
+       url: img,
        user: user,
      })
-     console.log(url);
+     console.log(img);
      console.log(user);
        alert("Purchase Complete!")
  
