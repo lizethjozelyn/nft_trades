@@ -98,12 +98,12 @@ function LoginReg() {
 					Total Images: {images.length}
 				</section>
 				{images.length > 0 ? (
-					<div className="grid">
+					<div className="image-grid">
 						{images.map((value, i) => {
 							return (
-								<div className="grid-item" key={i}>
+								<div className="image-item" key={i}>
 									<div className = "imageName">{value.image_name}</div>
-									<img className="grid-image" src={value.url} width="200" height={200}></img>
+									<img className="image-box" src={value.url} width="200" height={200}></img>
 									<div>
 										<button className="gift-btn" onClick={() => { giftUser(value.url) }}>
 											Gift
