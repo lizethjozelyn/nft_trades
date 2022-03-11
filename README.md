@@ -4,6 +4,9 @@ This project was created using React, Javascript, MySQL, CSS, and HTML.
 
 ## Available Scripts
 
+### Config.json
+
+You will need to insert the config.json file into /server/config. You may need to create the config folder to do this. The config file should be turned in with the assignment - if unavailable, email a group member from this project.
 
 To run the API needed for the webabb to work, run:
 
@@ -65,19 +68,23 @@ WIP
 
 ## Features
 
+### Main Page
+
+Displays a randomized selection of the images on the website.
+
 ### Image Buying
 
 Users can "buy" (for free) any image on the website not already owned.
 
 ### Image Gifting
 
-Images can be gifted to other users.
+Images can be gifted to other users from your profile.
 
 ### Image Uploading
 
-Images can be uploaded to the website
+Images can be uploaded to the website through an image URL. 
 
 ### Multiple Search Features
 
-Available options: search for a user, for an image name, or for an image group
+Available options: search for a user, for an image name, or for an image group.
 

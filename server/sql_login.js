@@ -320,8 +320,12 @@ async function test_hash(){
     //console.log(await get_all_unowned_images());
     //console.log(await get_all_owned_images());
     console.log(await six_rand_unowned_images());
-    await insert_user({'username' : "areasfasf", "password" : "Password"})
+    await insert_user({'username' : "testytesttest", "password" : "Password"});
+
+    await add_user_to_image('https://i.imgur.com/oifDvuf.png', 'testytesttest');
+    await add_user_to_image('https://i.imgur.com/oifDvuf.png', 'luke');
+    await add_user_to_image('https://i.imgur.com/RSuytUC.png', 'luke');
 }
 
 db_connect();
-test_hash();
+//test_hash();
