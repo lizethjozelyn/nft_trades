@@ -96,12 +96,20 @@ async function add_image_library()
     await sql_login.add_image("https://i.imgur.com/IgJlynp.png", "Mr. Bluebird", "For the Birds");
     await sql_login.add_image("https://i.imgur.com/bwlDiDE.png", "Who Can?", "For the Birds");
     await sql_login.add_image("https://i.imgur.com/CN3sV5E.png", "Spike", "For the Birds");
+    await sql_login.add_image("https://i.imgur.com/on59B3p.png", "Lightbulb");
+    await sql_login.add_image("https://i.imgur.com/dUXc7Ue.jpg", "Double Rainbow");
+    await sql_login.add_image("https://i.imgur.com/3Uqpapa.png", "Tree of Sauron");
+    await sql_login.add_image("https://i.imgur.com/iyfZrS1.png", "Making Waves");
+    await sql_login.add_image("https://i.imgur.com/YIhP4ek.png", "Boating");
+    await sql_login.add_image("https://i.imgur.com/0r9aE15.png", "Bridge");
+    await sql_login.add_image("https://i.imgur.com/CNLJx1q.png", "S");
+
     console.log("Done");
 
 }
 
 sql_login.db_connect();
-//runUserTests();
-//runUrlTests();
-//runNewTests();
+runUserTests();
+runUrlTests();
+runNewTests();
 add_image_library();
