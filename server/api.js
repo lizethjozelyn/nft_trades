@@ -93,8 +93,8 @@ app.get('/search/random', async function (req, res) {
 
 
 app.post('/store/purchase', async function (req, res) {
-	const url = req.body.group;
-	const user = req.body.url;
+	const url = req.body.url;
+	const user = req.body.user;
 	const retVal = await add_user_to_image(url, user);
 	res.send(retVal);
 });
