@@ -86,7 +86,11 @@
 	column-gap: 20px;
 
 }
-  
+
+.grid-item {
+	outline-style: solid;
+}
+
 .grid-image{
 	width: 200px;
 	height: 200px;
@@ -110,4 +114,9 @@
 	font-size: 1rem;
 	font-weight: 50;
 	top: 60px;
+  }
+
+  .imageName {
+	margin-top: 30px;
+	font-size: large;
   }

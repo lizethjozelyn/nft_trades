@@ -52,7 +52,7 @@ function LoginReg() {
 		console.log(url)
 		console.log("Gifting to " + otheruser)
 		Axios.post("http://localhost:3305/giveimage", {
-			username: username,
+			username: otheruser,
 			url: url
 		}).then((response) => {
 			console.log(response)
@@ -102,6 +102,7 @@ function LoginReg() {
 						{images.map((value, i) => {
 							return (
 								<div className="grid-item" key={i}>
+									<div className = "imageName">{value.image_name}</div>
 									<img className="grid-image" src={value.url} width="200" height={200}></img>
 									<div>
 										<button className="gift-btn" onClick={() => { giftUser(value.url) }}>
@@ -114,7 +115,7 @@ function LoginReg() {
 						})}
 					</div>
 				) : (
-					<p> No images </p>
+					<div></div>
 				)}
 			</div>
 		</Fragment>
