@@ -84,7 +84,7 @@ async function insert_user(user){
         return false;
     }
     var user_2 = await encrypt_user(user);
-    await execute_query("INSERT INTO users VALUES(?, ?)", user_2);
+    await execute_query("INSERT INTO users (user_id, user_pass) VALUES(?, ?)", user_2);
     await insert_user_hash(user['username']);
     return true;
 }
@@ -320,7 +320,8 @@ async function test_hash(){
     //console.log(await get_all_unowned_images());
     //console.log(await get_all_owned_images());
     console.log(await six_rand_unowned_images());
+    await insert_user({'username' : "areasfasf", "password" : "Password"})
 }
 
 db_connect();
-//test_hash();
+test_hash();
