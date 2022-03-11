@@ -36,7 +36,7 @@ The online database is somewhat unstable, due to a free hosting service being us
 
 ### Steps for configuring a local database:
 
-1. Download MySQL community edition (https://www.mysql.com/products/community/) and workbench (https://dev.mysql.com/downloads/workbench/).
+1. Download MySQL community edition and workbench  (https://dev.mysql.com/downloads/installer/). This installer should allow you to install both - if not, use the seperate workbench link (https://dev.mysql.com/downloads/workbench/).
 
 2. Install both files - default settings should suffice.
 
@@ -48,7 +48,7 @@ The online database is somewhat unstable, due to a free hosting service being us
   
      Refresh the schema window using the refresh button in workbench, select "test" by double-clicking it, then execute the following SQL code:
 
-   =CREATE TABLE \`images\` (
+   CREATE TABLE \`images\` (
   \`url\` varchar(64) NOT NULL,
   \`user_id\` varchar(45) DEFAULT NULL,
   \`image_group\` varchar(64) DEFAULT NULL,
