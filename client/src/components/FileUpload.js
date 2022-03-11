@@ -15,6 +15,7 @@ function FileUpload() {
 		Axios.post("http://localhost:3305/search/upload", {
 			url: url,
 		})
+		console.log(url);
 		alert("Thank you for contributing <3");
 		setUrl("");
 	}

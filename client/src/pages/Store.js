@@ -9,8 +9,8 @@ const Store = () => {
 
   const [url, setUrl] = useState('');
 
-	const purchase = e => {
-		setUrl(e.target.value);
+	function purchase(img){
+		setUrl(img);
     const cookies = new Cookies();
     if (cookies.get('username')) { 
        let user = (cookies.get('username')) 
@@ -18,6 +18,8 @@ const Store = () => {
        url: url,
        user: user,
      })
+     console.log(url);
+     console.log(user);
        alert("Purchase Complete!")
  
      }
@@ -68,22 +70,22 @@ const Store = () => {
          <Fragment>
             <div class="grid">
                   <div class = "grid-item">
-                     <img className = "grid-image" src={ExploreArray[0]} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[0]} onClick={function(){purchase(ExploreArray[0])}}></img>
                   </div>
                   <div class = "grid-item">
-                     <img className = "grid-image" src={ExploreArray[1]} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[1]} onClick={function(){purchase(ExploreArray[1])}}></img>
                   </div>
                   <div class = "grid-item">
-                     <img className = "grid-image" src={ExploreArray[2]} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[2]} onClick={function(){purchase(ExploreArray[2])}}></img>
                   </div>
                   <div class = "grid-item">
-                     <img className = "grid-image" src={ExploreArray[3]} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[3]} onClick={function(){purchase(ExploreArray[3])}}></img>
                   </div>
                   <div class = "grid-item">
-                     <img className = "grid-image" src={ExploreArray[4]} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[4]} onClick={function(){purchase(ExploreArray[4])}}></img>
                   </div>
                   <div class = "grid-item">
-                     <img className = "grid-image" src={ExploreArray[5]} onClick={purchase}></img>
+                     <img className = "grid-image" src={ExploreArray[5]} onClick={function(){purchase(ExploreArray[5])}}></img>
                   </div>
             </div>
 
