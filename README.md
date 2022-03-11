@@ -9,7 +9,7 @@ To run the API needed for the webabb to work, run:
 
 ### `node api.js`
 
-In the project directory, you can run:
+In the server directory, you can run:
 
 ### `npm start`
 
