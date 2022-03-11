@@ -12,7 +12,7 @@ function SearchBar({placeholder, data}) {
 	const [userList, setUserList] = useState([]);
 	const [nameList, setNameList] = useState([]);
 	const [groupList, setGroupList] = useState([]);
-	const [responseList, setResponseList] = useState([]);
+
 	const [filteredData, setFilteredData] = useState([]);
 	const [filteredDataN, setFilteredDataN] = useState([]);
 	const [filteredDataG, setFilteredDataG] = useState([]);
@@ -27,24 +27,16 @@ function SearchBar({placeholder, data}) {
 	
 	******/
 	
+
 	
-	
-	const setActiveData = () => {
-		console.log(data);
-		
-		
-		
-		
-	}
-	
-	console.log(userList.length);
+	// console.log(userList.length);
 	const sendQuery = e => {
-		console.log(data);
-		setActiveData();
+		// console.log(data);
+
 		const apiCall = "http://localhost:3305/search/" + data;
 		const searchQuery=e.target.value;
 		//let url = "http://localhost:3305/search/q=" + e.target.value;
-		console.log(userList.length);
+		// console.log(userList.length);
 		
 		//will be condensed later
 		if (data=='user') {			
@@ -56,7 +48,8 @@ function SearchBar({placeholder, data}) {
 					setSearchState("");		
 				});	
 			} else if (searchQuery.length>0) {
-					const msg = "No " + data + " Found";
+					//const msg = "No " + data + " Found";
+					const msg = "Not Found"					
 					//msg doesn't update immediately on mode change, so wipe search query on mode change
 					//or have community.js handle this
 					setSearchState(msg);		
@@ -81,7 +74,8 @@ function SearchBar({placeholder, data}) {
 					setSearchState("");		
 				});	
 			} else if (searchQuery.length>0) {
-					const msg = "No " + data + " Found";
+					//const msg = "No " + data + " Found";
+					const msg = "Not Found"					
 					//msg doesn't update immediately on mode change, so wipe search query on mode change
 					//or have community.js handle this
 					setSearchState(msg);		
@@ -91,7 +85,7 @@ function SearchBar({placeholder, data}) {
 					
 					//CHANGE THIS TO BE APPROPRIATE WITH WHAT DATA YOU NEED TO GRAB ****************************************************************
 					if (value.image_name!=null) {
-					console.log(value.image_name);
+					// console.log(value.image_name);
 					return value.image_name.includes(searchWord);
 				}
 				})
@@ -130,7 +124,7 @@ function SearchBar({placeholder, data}) {
 			}
 		
 		}
-		console.log("S");
+		// console.log("S");
 		//console.log(url);
 	};
 
