@@ -84,8 +84,10 @@ async function insert_user(user){
         return false;
     }
     var user_2 = await encrypt_user(user);
-    await execute_query("INSERT INTO users VALUES(?, ?)", user_2);
-    await insert_user_hash(user['username']);
+    user_hash = await generate_username_hash(user['username']);
+    
+    user_2[2] = user_hash
+    await execute_query("INSERT INTO users VALUES(?, ?, ?)", user_2);
     return true;
 }
 

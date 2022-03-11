@@ -28,7 +28,7 @@ function LoginReg() {
 			username: username,
 			password: password,
 		}).then((response) => {
-			if (response.data[0].user_hash.length > 0) {
+			if (response.data[0] && response.data[0].user_hash.length > 0) {
 				setText("Logged In.")
 				cookies.set('username', username);
 				cookies.set('token', response.data[0].user_hash);
@@ -48,8 +48,15 @@ function LoginReg() {
 
 	}
 
-	const giftUser = () => {
+	function giftUser(url) {
+		console.log(url)
 		console.log("Gifting to " + otheruser)
+		Axios.post("http://localhost:3305/giveimage", {
+			username: username,
+			url: url
+		}).then((response) => {
+			console.log(response)
+		});
 	}
 
 
@@ -97,7 +104,7 @@ function LoginReg() {
 								<div className="grid-item" key={i}>
 									<img className="grid-image" src={value.url} width="200" height={200}></img>
 									<div>
-										<button className="gift-btn" onClick={giftUser}>
+										<button className="gift-btn" onClick={() => { giftUser(value.url) }}>
 											Gift
 										</button>
 									</div>
