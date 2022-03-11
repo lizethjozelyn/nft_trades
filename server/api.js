@@ -107,7 +107,7 @@ app.get('/search/unowned', async function (req, res) {
 });
 
 app.post('/search/upload', async function (req, res) {
-	const url = req.body.group;
+	const url = req.body.url;
 	const retVal = await add_image(url);
 	res.send(retVal);
 });
